@@ -1,0 +1,116 @@
+﻿@model Mesajlar<AnaSayfaYetki>
+@{
+    ViewData["Title"] = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+    .input-group-text {
+        background-color: #0d497e;
+        color: #fff;
+    }
+
+    #txtAra {
+        height: 45px;
+    }
+
+</style>
+
+
+
+<div class="container p-4">
+    <div class="elektrikBaslik font-weight-bold mt-4">
+        <br />
+      
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 input-group">
+
+            <div class="input-group mb-3">
+
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+
+                <input id="txtAra" type="text" class="form-control txtIcon" placeholder="Arama ifadesi giriniz" aria-describedby="basic-addon1">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="container">
+    <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+            <div id="dvModul" class="row">
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var dataAnasayfa = [];
+    $(document).ready(function () {
+        var gecModel = @Json.Serialize(Model);
+
+        if (gecModel != null) {
+            dataModuller = gecModel.Liste
+        }
+        Modul_Doldur(dataModuller);
+
+        $('#txtAra').on('keyup', function (e) {
+
+            $('#dvModul').empty();
+
+            var dgr = $(this).val();
+
+            var _data;
+
+            if (dgr != null) {
+                _data = dataModuller.filter(x => x.modulAd.toLowerCase().includes(dgr) == true);
+            } else {
+                _data = dataModuller;
+            }
+
+            Modul_Doldur(_data);
+
+        });
+
+    });
+    function Modul_Doldur(data) {
+
+        var ind = 0;
+
+        for (var i = 0; i < data.length; i++) {
+
+ 
+                var id = '#dvModul';
+
+                var elm = "<div class=\"col-xl-4 col-sm-6 col-12 \" >" +
+                    " <div class=\"card dvCard\" onclick=\"window.location = \'" + data[i].modulUrl + "\'\"> " +
+                    " <div class=\"card-content\"> " +
+                    " <div class=\"card-body\"> " +
+                    " <div class=\"media d-flex\"> " +
+                    " <div class=\"align-self-center\"> " +
+                    " <i class=\"" + data[i].modulIcon + " fa-2x float-left\"></i> &emsp;" +
+                    " </div> " +
+                    " <div class=\"media-body text-right pt-1\"> " +
+                    "<h5>" + data[i].modulAd + "</h5> " +
+                    " <span></span> </div> </div> </div> </div> </div> </div>";
+
+
+                $(id).append(elm);
+
+                ind++;
+
+                if (ind == 3) ind = 0;
+            
+        }
+
+    };
+
+
+
+</script>

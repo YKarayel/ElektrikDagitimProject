@@ -15,6 +15,7 @@ namespace Entities.Concrete.General
         public string? ExMessage { get; set; }
         public T? Nesne { get; set; }
         public List<T>? Liste { get; set; }
-        
+        public string AccToken { get; set; }
+
     }
 }

@@ -7,19 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Abstract;
 
-namespace Entities.Concrete.Muhasebe
+namespace ElektrikDagıtım.Entities.Concrete.Muhasebe
 {
     public class FATURA : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FaturaId { get; set; }
         public string HizmetAdı { get; set; } = "Elektrik Dağıtım Bedeli";
+        [Required]
         public double FaturaBedeli { get; set; }
-        public int Kdv { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
+        public double Kdv { get; set; } = 0.20;
+        public double KdvOncesiTutar { get; set; }
+        [Required]
         public int AboneId { get; set; }
-        public DateTime Tarih { get; set; }
-        public bool Durum { get; set; }
+        [Required]
+        public bool Odendi { get; set; } = false;
 
     }
 }

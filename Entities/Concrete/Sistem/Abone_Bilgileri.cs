@@ -2,15 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Concrete.Sistem
+namespace ElektrikDagıtım.Entities.Concrete.Sistem
 {
     public class ABONE : BaseEntity
     {
-        [Display(Name = "Abone No")]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AboneId { get; set; }
-
         [Display(Name = "Adı Soyadı")]
         [MaxLength(50)]
         [Required(ErrorMessage = "Doldurulması zorunlu alandır!")]
@@ -38,12 +33,8 @@ namespace Entities.Concrete.Sistem
         [MaxLength(11)]
         [Required(ErrorMessage = "Doldurulması zorunlu alandır!")]
         public string TC { get; set; }
+        [Required]
         public int YetkiId { get; set; }
-
-        [Display(Name = "Abone Kayıt Tarihi")]
-        public DateTime? AbnKayıtTarihi { get; set; }
-
-        public bool Durum { get; set; } = true;
 
 
     }
@@ -58,17 +49,14 @@ namespace Entities.Concrete.Sistem
         public string Sifre { get; set; }
     }
 
-    public class ABONE_LOGIN_RESPONSE<T> where T : class
+    public class ABONE_LOGIN_RESPONSE
     {
-        public ABONE Kullanici { get; set; }
-        public List<KULLANICI_YETKI> Yetkiler { get; set; }
+        public ABONE Abone { get; set; }
         public string Token { get; set; }
     }
 
-    public class ABONE_BORC
+    public class ABONE_BORC : BaseEntity
     {
-        [Key]
-        public int AboneBorcId { get; set; }
         [Required]
         public int AboneId { get; set; }
         public double Borclar { get; set; }

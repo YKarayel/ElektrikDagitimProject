@@ -22,35 +22,92 @@ namespace ElektrikDagıtım.Dal.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Entities.Concrete.Muhasebe.BUTCE_BILGI", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.General.LOGGING", b =>
                 {
-                    b.Property<int>("ButceId")
+                    b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ButceId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
+
+                    b.Property<bool>("Aktif")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("varchar(MAX)");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("ObjectId");
+
+                    b.ToTable("LOGLAR");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Muhasebe.BUTCE_BILGI", b =>
+                {
+                    b.Property<int>("ObjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
+
+                    b.Property<bool>("Aktif")
+                        .HasColumnType("bit");
 
                     b.Property<long>("Butce")
                         .HasColumnType("bigint");
 
-                    b.HasKey("ButceId");
+                    b.Property<string>("ButceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("ObjectId");
 
                     b.ToTable("BUTCE_BILGILERI");
+
+                    b.HasData(
+                        new
+                        {
+                            ObjectId = 1,
+                            Aktif = false,
+                            Butce = 1000000L,
+                            ButceName = "Ana Bütçe"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Concrete.Muhasebe.FATURA", b =>
                 {
-                    b.Property<int>("FaturaId")
+                    b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FaturaId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
 
                     b.Property<int>("AboneId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Durum")
+                    b.Property<bool>("Aktif")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
 
                     b.Property<double>("FaturaBedeli")
                         .HasColumnType("float");
@@ -59,29 +116,38 @@ namespace ElektrikDagıtım.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Kdv")
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
+                    b.Property<decimal>("Kdv")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<double>("KdvOncesiTutar")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Odendi")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("TAHSILATObjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TahsilatId")
-                        .HasColumnType("int");
+                    b.HasKey("ObjectId");
 
-                    b.Property<DateTime>("Tarih")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("FaturaId");
-
-                    b.HasIndex("TahsilatId");
+                    b.HasIndex("TAHSILATObjectId");
 
                     b.ToTable("FATURALAR");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Muhasebe.TAHSILAT", b =>
                 {
-                    b.Property<int>("TahsilatId")
+                    b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TahsilatId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
 
                     b.Property<int>("AboneId")
                         .HasColumnType("int");
@@ -90,41 +156,50 @@ namespace ElektrikDagıtım.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KdvOncesiTutar")
-                        .HasColumnType("int");
+                    b.Property<bool>("Aktif")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
+                    b.Property<double>("KdvOncesiTutar")
+                        .HasColumnType("float");
 
                     b.Property<decimal>("KdvOranı")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int>("TahsilatTutari")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime>("Tarih")
-                        .HasColumnType("datetime2");
+                    b.Property<double>("TahsilatTutari")
+                        .HasColumnType("float");
 
-                    b.HasKey("TahsilatId");
+                    b.HasKey("ObjectId");
 
                     b.ToTable("TAHSILATLAR");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Sistem.ABONE", b =>
                 {
-                    b.Property<int>("AboneId")
+                    b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboneId"), 1L, 1);
-
-                    b.Property<DateTime?>("AbnKayıtTarihi")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
 
                     b.Property<string>("AdSoyad")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("Durum")
+                    b.Property<bool>("Aktif")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Eposta")
                         .IsRequired()
@@ -136,10 +211,16 @@ namespace ElektrikDagıtım.Dal.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Sifre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("TC")
                         .IsRequired()
@@ -149,43 +230,81 @@ namespace ElektrikDagıtım.Dal.Migrations
                     b.Property<int>("YetkiId")
                         .HasColumnType("int");
 
-                    b.HasKey("AboneId");
+                    b.HasKey("ObjectId");
 
                     b.ToTable("ABONELER");
+
+                    b.HasData(
+                        new
+                        {
+                            ObjectId = 1,
+                            AdSoyad = "admin",
+                            Aktif = true,
+                            Eposta = "admin@admin.com",
+                            GsmNo = "05419999999",
+                            KayıtTarih = new DateTime(2023, 11, 6, 17, 57, 52, 654, DateTimeKind.Local).AddTicks(3484),
+                            Sifre = "ꉟ뺾昊ﰺꄄ헻",
+                            TC = "12345678910",
+                            YetkiId = 1
+                        });
                 });
 
             modelBuilder.Entity("Entities.Concrete.Sistem.ABONE_BORC", b =>
                 {
-                    b.Property<int>("AboneBorcId")
+                    b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboneBorcId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
 
                     b.Property<int>("AboneId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Aktif")
+                        .HasColumnType("bit");
+
                     b.Property<double>("Borclar")
                         .HasColumnType("float");
 
-                    b.HasKey("AboneBorcId");
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("ObjectId");
 
                     b.ToTable("ABONE_BORCLARI");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Sistem.KULLANICI_YETKI", b =>
                 {
-                    b.Property<int>("YetkiId")
+                    b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YetkiId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
+
+                    b.Property<bool>("Aktif")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("YetkiAdı")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("YetkiId");
+                    b.HasKey("ObjectId");
 
                     b.ToTable("KULLANICI_YETKILERI");
                 });
@@ -193,13 +312,13 @@ namespace ElektrikDagıtım.Dal.Migrations
             modelBuilder.Entity("Entities.Concrete.Muhasebe.FATURA", b =>
                 {
                     b.HasOne("Entities.Concrete.Muhasebe.TAHSILAT", null)
-                        .WithMany("Faturalar")
-                        .HasForeignKey("TahsilatId");
+                        .WithMany("FaturaId")
+                        .HasForeignKey("TAHSILATObjectId");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Muhasebe.TAHSILAT", b =>
                 {
-                    b.Navigation("Faturalar");
+                    b.Navigation("FaturaId");
                 });
 #pragma warning restore 612, 618
         }

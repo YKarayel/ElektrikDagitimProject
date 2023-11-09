@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Entities"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Dal", "Dal\ElektrikDagıtım.Dal.csproj", "{33FD3852-899A-4291-9488-09954120DF4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElektrikDagıtım.Api_Sistem", "Elektrik.Api.Sistem\ElektrikDagıtım.Api_Sistem.csproj", "{8813AAB5-6997-4533-A674-83E9A28B85C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Api_Sistem", "Elektrik.Api.Sistem\ElektrikDagıtım.Api_Sistem.csproj", "{8813AAB5-6997-4533-A674-83E9A28B85C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Api_Muhasebe", "ElektrikDagıtım.Api_Muhasebe\ElektrikDagıtım.Api_Muhasebe.csproj", "{D1C5FFBF-094B-45D3-89E9-249836BE5617}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Web", "ElektrikDagıtım.Web\ElektrikDagıtım.Web.csproj", "{5D2E2753-C890-44D9-95E0-49EAABF854EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Api_GW", "ElektrikDagıtım.Api_GW\ElektrikDagıtım.Api_GW.csproj", "{02239201-E4FC-4228-9A57-E1E81B8FD0FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{8813AAB5-6997-4533-A674-83E9A28B85C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8813AAB5-6997-4533-A674-83E9A28B85C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8813AAB5-6997-4533-A674-83E9A28B85C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1C5FFBF-094B-45D3-89E9-249836BE5617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C5FFBF-094B-45D3-89E9-249836BE5617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C5FFBF-094B-45D3-89E9-249836BE5617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C5FFBF-094B-45D3-89E9-249836BE5617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D2E2753-C890-44D9-95E0-49EAABF854EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2E2753-C890-44D9-95E0-49EAABF854EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2E2753-C890-44D9-95E0-49EAABF854EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2E2753-C890-44D9-95E0-49EAABF854EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02239201-E4FC-4228-9A57-E1E81B8FD0FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02239201-E4FC-4228-9A57-E1E81B8FD0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02239201-E4FC-4228-9A57-E1E81B8FD0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02239201-E4FC-4228-9A57-E1E81B8FD0FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,256 @@
+﻿
+html, body {
+    padding: 0px;
+    height:100%;
+    max-height: 100%;
+    margin: 0px;
+    font-family: Calibri;
+    overflow-x: hidden;
+   
+}
+
+
+.heading {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.dvLogo img {
+    width: auto;
+    max-width: 100%;
+    max-height: 35px;
+    margin: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #0d497e !important;
+    border: 1px solid #0d497e;
+    margin-left: 7px;
+    border-radius: 4px;
+}
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        background-color: #0d497e !important;
+        color: #fff !important;
+        border: 1px solid #0d497e;
+        margin-left: 7px;
+        border-radius: 4px;
+    }
+
+.dropdown-item:hover, .dropdown-item:active {
+    background-color: #0d497e !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+ul.dropdown-menu {
+    --bs-dropdown-padding-x: 0.5rem;
+    --bs-dropdown-padding-y: 0.5rem;
+}
+
+
+.dvCard {
+    margin-top: 15px;
+    cursor: pointer;
+    color: #0d497e !important;
+    background-color: #026d7d0a;
+    /*border: 1px solid #05b8d4;*/
+}
+
+    .dvCard:hover {
+        background-color: #0d497e !important;
+        color: #fff !important;
+        transition: transform 0.3s;
+    }
+
+input[inputmode=decimal] {
+    text-align: right;
+}
+
+.dx-toolbar-before
+{
+    width:100% !important;
+}
+
+.input-group-append button
+{
+    padding:5px 12px;
+}
+
+.frmButton
+{
+    min-width:80px;
+}
+
+.btn-outline-info {
+    --bs-btn-color: #0d497e;
+    --bs-btn-border-color: #0d497e;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0d497e;
+    --bs-btn-hover-border-color: #0d497e;
+    --bs-btn-focus-shadow-rgb: 13, 202, 240;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0d497e;
+    --bs-btn-active-border-color: #0d497e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #797d7d;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #787878;
+    --bs-gradient: none;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #0d497e;
+    --bs-btn-border-color: #0d497e;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #1b3f5e;
+    --bs-btn-hover-border-color: #3371a7;
+    --bs-btn-focus-shadow-rgb: 11, 172, 204;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #3371a7;
+    --bs-btn-active-border-color: #3371a7;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #515151;
+    --bs-btn-disabled-bg: #ffffff;
+    --bs-btn-disabled-border-color: #ccd0d0;
+}
+
+.btn-warning {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #eeb435;
+    --bs-btn-border-color: #eeb435;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ae852a;
+    --bs-btn-hover-border-color: #ae852a;
+    --bs-btn-focus-shadow-rgb: 217, 164, 6;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ffcd39;
+    --bs-btn-active-border-color: #ffc720;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #515151;
+    --bs-btn-disabled-bg: #ffffff;
+    --bs-btn-disabled-border-color: #ccd0d0;
+}
+
+.btn-info {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #40a0d0;
+    --bs-btn-border-color: #40a0d0;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0d497e;
+    --bs-btn-hover-border-color: #0d497e;
+    --bs-btn-focus-shadow-rgb: 13, 202, 240;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0d497e;
+    --bs-btn-active-border-color: #0d497e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #515151;
+    --bs-btn-disabled-bg: #ffffff;
+    --bs-btn-disabled-border-color: #ccd0d0;
+}
+
+
+.readOnly, .readOnly:focus, .readOnly:active {
+    background-color: #dadada3d !important;
+    border: 1px solid #dadada !important;
+    box-shadow: none !important;
+}
+
+
+.form-control:focus, .dx-texteditor-input:focus, .dx-state-focused {
+    color: #212529;
+    background-color: #fff;
+    border-color: #dbe8ec;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem rgb(219 232 236);
+}
+
+.dx-radiogroup
+{
+    background-color:transparent !important;
+}
+
+.dx-radiogroup.dx-state-focused {
+    box-shadow: none !important;
+}
+
+
+.dx-dropdowneditor-button.dx-state-active .dx-dropdowneditor-icon, .dx-dropdowneditor.dx-dropdowneditor-active .dx-dropdowneditor-icon {
+    background-color: #dbe8ec !important;
+    border-color: transparent;
+    color: #447c92 !important;
+    opacity: 1;
+}
+
+.dx-dropdowneditor-icon {
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid transparent;
+    color: #447c92 !important;
+    
+    font: 18px/18px DXIcons;
+    width: 32px;
+    height: 100%;
+    text-align: center;
+    border-radius: 3px;
+}
+
+
+.pl-0{
+
+    padding-left:0px;
+}
+
+.pr-0{
+    padding-right:0px;
+}
+
+/*.dx-datagrid-rowsview .dx-row-focused.dx-data-row:not(.dx-row-lines) > td, .dx-datagrid-rowsview .dx-row-focused.dx-data-row:not(.dx-row-lines) > tr:first-child > td {
+    border-top: 1px solid #5c95c5 !important;
+    border-bottom: 1px solid #5c95c5 !important;
+}
+
+.dx-datagrid-rowsview .dx-row-focused.dx-data-row .dx-command-edit:not(.dx-focused) .dx-link, .dx-datagrid-rowsview .dx-row-focused.dx-data-row > td:not(.dx-focused), .dx-datagrid-rowsview .dx-row-focused.dx-data-row > tr > td:not(.dx-focused) {
+    background-color: #c1dee7 !important;
+    color: #0d497e !important;
+    font-weight:500;
+}
+
+.dx-state-hover {
+    background-color: #e5eef2cf !important;
+}*/
+.dx-datagrid {
+    max-height: 600px !important;
+}
+
+.dropdown-header {
+    display: block;
+    padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: #4786bd;
+    white-space: nowrap;
+    font-weight: 600;
+    background-color: aliceblue;
+}
+
+.dx-treelist-rowsview .dx-selection.dx-row:not(.dx-row-focused) > td, .dx-treelist-rowsview .dx-selection.dx-row:not(.dx-row-focused) > tr > td, .dx-treelist-rowsview .dx-selection.dx-row:not(.dx-row-focused):hover > td, .dx-treelist-rowsview .dx-selection.dx-row:not(.dx-row-focused):hover > tr > td {
+    background-color: #e2f1f559 !important;
+}
+
+.dvGroupDiv
+{
+    border: 1px solid #dadada;
+    border-radius:8px;
+    padding:10px;
+    background-color:#f5fbfc;
+}
+
+
+@media(min-height: 851px) {
+    .dx-datagrid {
+        max-height: 950px !important;
+    }
+}

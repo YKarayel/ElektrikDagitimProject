@@ -1,5 +1,6 @@
-﻿using Entities.Concrete.General;
-using Entities.Concrete.Sistem;
+﻿using Dal.Abstract;
+using Entities.Concrete.General;
+using ElektrikDagıtım.Entities.Concrete.Sistem;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -7,39 +8,31 @@ using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Nodes;
 
 namespace Dal.Concrete.Sistem
 {
     public class Kullanici_Islemleri
     {
-        private readonly AppDbContext cnt;
 
-        public Kullanici_Islemleri(AppDbContext context)
+        private readonly IEntityRepository<ABONE> _abnrepo;
+        private readonly IEntityRepository<KULLANICI_YETKI> _yetkiRepo;
+        private readonly AppDbContext _cnt;
+
+
+
+        public Kullanici_Islemleri(IEntityRepository<ABONE> abnrepo, IEntityRepository<KULLANICI_YETKI> yetkiRepo, IEntityRepository<ABONE_BORC> aboneBorcRepo, AppDbContext cnt)
         {
-            cnt = context;
+            _abnrepo = abnrepo;
+            _yetkiRepo = yetkiRepo;
+            _cnt = cnt;
         }
 
         public Mesajlar<KULLANICI_YETKI> Tüm_Kullanıcı_Yetkilerini_Getir()
         {
 
-            Mesajlar<KULLANICI_YETKI> m = new Mesajlar<KULLANICI_YETKI>();
+            var m = _yetkiRepo.Tum_Listele();
 
-
-            try
-            {
-                var yetkiler = cnt.KULLANICI_YETKILERI.ToList();
-
-                m.Durum = true;
-                m.Liste = yetkiler;
-                m.Mesaj = "Kullanıcı Yetki Listesi başarıyla görüntülendi";
-
-            }
-            catch (Exception ex)
-            {
-                m.Durum = false;
-                m.Mesaj = "Kullanıcı Yetki Listesi görüntülenemiyor";
-                m.ExMessage = ex.Message + Environment.NewLine + ex.StackTrace;
-            }
 
             return m;
 
@@ -47,80 +40,60 @@ namespace Dal.Concrete.Sistem
 
         public Mesajlar<ABONE> Abone_Kontrol(string eposta, string sifre)
         {
-            Mesajlar<ABONE> m = new Mesajlar<ABONE>();
 
+            Mesajlar<ABONE> m = new Mesajlar<ABONE>();
             try
             {
-
-
-                if (eposta == "admin@admin.com" && sifre == "123")
-                {
-                    m.Nesne = cnt.ABONELER.SingleOrDefault(x => x.YetkiId == 1); // yetki id'si 1 olan super admin
-
-                    if (m.Nesne == null)
-                    {
-                        cnt.ABONELER.AddAsync(new ABONE
-                        {
-                            AboneId = 1,
-                            AdSoyad = "admin",
-                            Eposta = "admin@admin.com",
-                            Sifre = Sifreleme_Islemleri.Sifrele("123"),
-                            GsmNo = "05419999999",
-                            TC = "12345678910",
-                            Durum = true,
-                            AbnKayıtTarihi = DateTime.Now,
-                            YetkiId = 1
-                        });
-                        cnt.SaveChangesAsync();
-
-                        //Token??
-                    }
-                }
-                else
-                {
-                    m.Nesne = cnt.ABONELER.SingleOrDefault(x => x.Durum == true && x.Eposta == eposta && x.Sifre == Sifreleme_Islemleri.Sifrele(sifre));
-                }
-
-                if (m.Nesne == null)
+               var abone = _abnrepo.Getir(x => x.Aktif == true && x.Eposta == eposta.ToLower() && x.Sifre == Sifreleme_Islemleri.Sifrele(sifre)).Nesne;
+                if (abone == null)
                 {
                     m.Durum = false;
                     m.Mesaj = "Yetkisiz Kullanıcı";
+                   
                 }
                 else
                 {
                     m.Durum = true;
                     m.Mesaj = "Kullanıcı sisteme giriş yaptı";
+                    m.Nesne = abone;
                 }
             }
             catch (Exception ex)
             {
                 m.Durum = false;
                 m.Mesaj = ex.Message;
+                return m;
             }
             return m;
-        }
+        } 
 
-        public Mesajlar<ABONE> Yeni_Abone(ABONE abone)
+        public Mesajlar<ABONE> Yeni_Abone(ABONE abone) 
         {
             Mesajlar<ABONE> m = new Mesajlar<ABONE>();
 
             try
             {
-                cnt.ABONELER.Add(new ABONE
+
+                var isAbone = _abnrepo.Getir(x => x.Eposta == abone.Eposta.ToLower());
+
+                if (isAbone.Nesne!=null)
+                {
+                    m.Mesaj = "Bu e-postaya ait zaten bir kayıt mevcut"; 
+                    m.Durum = false; 
+                    return m;
+                }
+                _abnrepo.Ekle(new ABONE
                 {
 
-                    AdSoyad = abone.AdSoyad,
+                    AdSoyad = abone.AdSoyad.ToLower(),
                     Sifre = Sifreleme_Islemleri.Sifrele(abone.Sifre),
-                    Eposta = abone.Eposta,
-                    TC= abone.TC,
+                    Eposta = abone.Eposta.ToLower(),
+                    TC = abone.TC,
                     GsmNo = abone.GsmNo,
                     YetkiId = 3,
-                    AbnKayıtTarihi = DateTime.Now,
-                    Durum = true
-
-                }) ;
-
-                cnt.SaveChanges();
+                    Aktif = true,
+                    KayıtTarih = DateTime.Now
+                });
 
                 m.Durum = true;
                 m.Mesaj = "Abone başarıyla kaydedildi";
@@ -133,6 +106,45 @@ namespace Dal.Concrete.Sistem
             }
             return m;
 
+        } 
+        public Mesajlar<ABONE> Tum_Aboneleri_Getir()
+        {
+            Mesajlar<ABONE> m = new Mesajlar<ABONE>();
+            var aboneList = _abnrepo.Tum_Listele().Liste;
+            m.Liste = aboneList;
+            m.Durum = true;
+
+            return m;
+        } 
+        public Mesajlar<KULLANICI_YETKI> Abone_Kullanıcı_Yetki_Getir(int aboneId)
+        {
+            Mesajlar<KULLANICI_YETKI> m = new Mesajlar<KULLANICI_YETKI>();
+
+            //m.Nesne =
+            var abone = _yetkiRepo.Getir(x => x.ObjectId == aboneId).Nesne;
+
+            if (abone == null)
+            {
+                m.Durum = false;
+                m.Mesaj = "Abone / Kullanıcı bulunamadı";
+            }
+            m.Nesne = _yetkiRepo.Getir(x => x.ObjectId == abone.ObjectId).Nesne;
+
+            return m;
+
         }
+        public Mesajlar<ABONE> Abone_Getir(int aboneId)
+        {
+            var m = _abnrepo.Getir(x => x.ObjectId == aboneId);
+            if(m.Nesne == null)
+            {
+                m.Durum = false;
+                m.Mesaj = "Bu Id'ye ait bir abone mevcut değil";
+                return m;
+            }
+
+            return m;
+        }
+
     }
 }

@@ -7,14 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Abstract;
 
-namespace Entities.Concrete.Muhasebe
+namespace ElektrikDagıtım.Entities.Concrete.Muhasebe
 {
     public class BUTCE_BILGI: BaseEntity
     {
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ButceId { get; set; }
+        public string ButceName { get; set; }
         public long Butce { get; set; }
     }
 }

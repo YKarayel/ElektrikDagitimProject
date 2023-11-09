@@ -13,38 +13,25 @@ using System.Threading.Tasks;
 
 namespace Dal.Concrete
 {
-    public class EfEntityRepository<TEntity, TContext> : IEntityRepository<TEntity>
-        where TEntity : class, new()
-        where TContext : DbContext, new()
+    public class EfEntityRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class
     {
-        private readonly TContext cnt = null;
-        public EfEntityRepository(TContext context)
+        private readonly AppDbContext cnt;
+
+        public EfEntityRepository(AppDbContext cnt)
         {
-            cnt = context;
+            this.cnt = cnt;
         }
+
         public Mesajlar<TEntity> Duzelt(TEntity ent)
         {
             Mesajlar<TEntity> m = new Mesajlar<TEntity>();
             try
             {
-                EntityEntry<TEntity> addEntity = cnt.Entry(ent);
-                //addEntity.State = EntityState.Modified;
-
-                IEnumerable<PropertyEntry> lst = cnt.Entry(ent).Properties;
-
-                string pKey = addEntity.Metadata.FindPrimaryKey().Properties.Select(x => x.Name).Single();
-
-                foreach (var i in lst)
-                {
-                    if (i.CurrentValue != null && i.Metadata.Name != pKey)
-                    {
-                        i.IsModified = true;
-                    }
-                }
+                cnt.Update(ent);
 
                 cnt.SaveChanges();
 
-                m.Nesne = addEntity.Entity;
+                m.Nesne = ent;
                 m.Durum = true;
                 m.Mesaj = "Kayıt güncellendi";
             }
@@ -207,6 +194,24 @@ namespace Dal.Concrete
             try
             {
                 m.Liste = await cnt.Set<TEntity>().Where(filtre).ToListAsync();
+                m.Durum = true;
+                m.Mesaj = "Kayıtlar görüntülendi";
+            }
+            catch (Exception ex)
+            {
+                m.Durum = false;
+                m.Mesaj = "Kayıtlar görüntülenemedi";
+                m.ExMessage = ex.Message + Environment.NewLine + ex.StackTrace;
+            }
+            return m;
+        }
+        public Mesajlar<TEntity> Tum_Listele()
+        {
+            Mesajlar<TEntity> m = new Mesajlar<TEntity>();
+
+            try
+            {
+                m.Liste = cnt.Set<TEntity>().ToList();
                 m.Durum = true;
                 m.Mesaj = "Kayıtlar görüntülendi";
             }

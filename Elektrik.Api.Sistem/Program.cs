@@ -1,4 +1,6 @@
+using Dal.Abstract;
 using Dal.Concrete;
+using Dal.Concrete.Sistem;
 using ElektrikDagýtým.Dal.Concrete.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +13,17 @@ var config = builder.Configuration;
 
 // Add services to the container.
 
-builder.Services.AddScoped<AppDbContext>();
+
 
 builder.Services.AddMvc(x => x.EnableEndpointRouting = false).AddViewOptions(opt => opt.HtmlHelperOptions.ClientValidationEnabled = true).AddNewtonsoftJson(x => x.SerializerSettings.ContractResolver = new DefaultContractResolver());
 builder.Services.AddCors();
-var connStr = builder.Configuration.GetConnectionString("DefaulConnection");
+
+var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connStr));
+
+builder.Services.AddScoped<AppDbContext>();
+builder.Services.AddScoped<Kullanici_Islemleri>();
+builder.Services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepository<>));
 
 
 builder.Services.AddAuthentication(option =>
