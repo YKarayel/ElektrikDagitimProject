@@ -1,0 +1,140 @@
+﻿
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../fonts/roboto/Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Bold-Italic';
+    src: url('../fonts/roboto/Roboto-BoldItalic.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../fonts/roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Medium-Italic';
+    src: url('../fonts/roboto/Roboto-MediumItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../fonts/roboto/Roboto-Regular.ttf');
+}
+
+
+
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+body
+{
+    background-color:aliceblue;
+}
+
+/*canvas {
+    padding: 5px 0px 5px 10px !important;
+    height: 45px !important;
+}*/
+
+.dvForm {
+    border: 1px solid #176db8;
+    border-radius: 5px;
+    padding: 30px 30px 0px 30px;
+    background-color: #f0ffffbf;
+    /*box-shadow: -5px 8px 12px #a1c0e087;*/
+    box-shadow: -5px 8px 12px #63788ea6;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:1000px;
+}
+
+.bgBackGround {
+    background-image: url('/img/19366.jpg');
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+input,canvas {
+    /*border-color: #17a2b8  !important;*/
+    border: solid 0.5px #176db8 !important;
+}
+
+    input:focus {
+        border-color: #176db8 !important;
+    }
+
+.input-group-text {
+    color: #fff;
+    background-color: #176db8;
+    border: solid 2px #176db8 !important;
+}
+
+.input-group > .form-control, .input-group > .form-select, .input-group > .form-floating {
+    height: 40px;
+}
+
+
+.dvLoginButton {
+    padding: 10px;
+}
+
+
+.dvAlanBaslik {
+    color: #0d497e;
+    /*font-family: Roboto-Bold;*/
+    font-family: Roboto-Medium;
+    /*font-family: Roboto-Regular;*/
+    font-size: 26px;
+    font-weight: 600;
+    padding: 20px 0px 30px 15px;
+    margin-top:30px;
+}
+
+.dvLogo {
+    margin-top: 20%;
+}
+
+    .dvLogo img {
+        max-width: 100%;
+    }
+
+.dvVersiyon {
+    color: #6c757d;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    font-weight: 600;
+    display: block;
+    text-align: center; 
+    font-size: 12px;
+}
+
+.yaziPowered {
+    color: #6c757d;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    font-size:16px;
+}
+
+.btn-primary {
+    --bs-btn-bg: #176db8 !important;
+    /* background-color: #0d497e !important;*/
+    background-color: #176db8 !important;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background-color: #0d497e !important;
+        /*background-color: #176db8 !important;*/
+    }

@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        background-color: #E9E9E9;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+    }
+</style>
+<div class="center">
+    <h3> @ViewData["user"], aboneliğinizi sonlandırmak istediğinize üzüldük...</h3>
+    <br />
+    <h5>Abonelik sürecinizin sonlandırılabilmesi için ödenmemiş faturanızın bulunmaması gerekmektedir.</h5>
+
+    <hr />
+
+    <div id="odmdurum">
+
+        <div class="alert alert-success" role="alert">
+            Ödenmemiş faturanız bulunmamaktadır.Abonelik iptali butonuna tıkladıktan sonra abonelik sürecinizi iptal edebilirsiniz, ardından 7 iş günü içerisinde depozito bedeliniz hesabınıza yatırılacaktır.
+        </div>
+        <br />
+        <a type="button" class="btn btn-primary" href="/Home/Index/">Abonelik iptali</a>
+    </div>
+
+
+</div>
+
+<script>
+    var userId = @ViewData["userId"];
+    var userName = "@ViewData["user"]";
+    var token = "@ViewData["token"]";
+</script>
+<script src="~/js/area/sistem/aboneliksonlandirma.js"></script>

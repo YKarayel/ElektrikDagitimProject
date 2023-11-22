@@ -1,4 +1,6 @@
 
+using DevExpress.AspNetCore;
+using DevExpress.AspNetCore.Reporting;
 using Microsoft.AspNetCore.Localization;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
@@ -15,6 +17,7 @@ var supportLang = new[]
 //public IConfiguration configuration;
 
 
+builder.Services.AddDevExpressControls();
 
 
 builder.Services.AddMvc(x => x.EnableEndpointRouting = false)
@@ -23,6 +26,20 @@ builder.Services.AddMvc(x => x.EnableEndpointRouting = false)
     .AddNewtonsoftJson(z => z.SerializerSettings.ContractResolver = new DefaultContractResolver()).AddRazorRuntimeCompilation();
 
 
+builder.Services.ConfigureReportingServices(configurator =>
+{
+    configurator.ConfigureWebDocumentViewer(viewerConfigurator =>
+    {
+        viewerConfigurator.UseCachedReportSourceBuilder();
+    });
+
+    //configurator.ConfigureReportDesigner(designer =>
+    //{
+    //    designer.
+    //})
+
+    configurator.DisableCheckForCustomControllers();
+});
 
 //builder.Services.AddScoped<ReportStorageWebExtension, clsReportSorageWebExtension>();
 
@@ -34,6 +51,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
+app.UseDevExpressControls();
 System.Net.ServicePointManager.SecurityProtocol |= System.Net.SecurityProtocolType.Tls12;
 
 if (env.IsDevelopment())

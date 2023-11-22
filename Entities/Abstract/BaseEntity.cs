@@ -25,7 +25,7 @@ namespace Entities.Abstract
         public DateTime? SilmeTarihi { get; set; }
 
         [DisplayName("Aktif")]
-        public bool Aktif { get; set; }
+        public bool Aktif { get; set; } = true;
 
 
     }

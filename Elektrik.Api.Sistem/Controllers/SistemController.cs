@@ -12,7 +12,7 @@ namespace ElektrikDagıtım.Api_Sistem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class SistemController : Controller
     {
 
@@ -90,7 +90,7 @@ namespace ElektrikDagıtım.Api_Sistem.Controllers
         }
 
         [HttpGet("Abone_Getir")]
-        public IActionResult Abone_Getir(int aboneId)
+        public IActionResult Abone_Getir([FromHeader] int aboneId)
         {
             var m = _islemler.Abone_Getir(aboneId);
 

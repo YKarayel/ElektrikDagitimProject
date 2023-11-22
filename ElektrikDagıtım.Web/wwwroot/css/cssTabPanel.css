@@ -1,0 +1,32 @@
+﻿.dvTabPanel, .tab-content {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+.page-link {
+    color: #17a2b8;
+}
+
+.page-item.active .page-link {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.nav-tabs a {
+    color: #0d497e !important;
+}
+
+/*.nav-tabs a :hover {
+    background-color: #17a2b8 !important;
+}*/
+
+    .nav-tabs a.active {
+        background-color: #0d497e !important;
+        color: #fff !important;
+    }

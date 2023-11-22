@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5 px-2">
+
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+
+        <div class="position-relative">
+            <span class="position-absolute search"><i class="fa fa-search"></i></span>
+            <input class="form-control w-100" placeholder="Search by order#, name...">
+        </div>
+
+
+    </div>
+    <div class="table-responsive">
+        <table id="faturaTable" class="table table-responsive table-borderless">
+
+            <thead class="border">
+                <tr class="bg-light">
+                    <th scope="col" width="1%"></th>
+                    <th scope="col" width="7%">Tahsilat No</th>
+                    <th scope="col" width="7%">Tarih</th>
+                    <th scope="col" width="10%">Ödenen Faturalar</th>
+                    <th scope="col" width="10%">Abone Adı</th>
+                    <th scope="col" width="14%">Açıklama</th>
+                    <th scope="col" width="11%">KDV Öncesi Tutar</th>
+                    <th scope="col" width="5%">KDV</th>
+                    <th scope="col" width="10%"><span>Toplam Tutar</span></th>
+                    <th scope="col" width="10%">Görüntüle</th>
+
+
+                </tr>
+            </thead>
+            <tbody id="ftrbody">
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    var userId = @ViewData["userId"];
+    var userName = "@ViewData["user"]";
+    var token = "@ViewData["token"]";
+</script>
+
+<script src="~/js/area/muhasebe/tahsilatlar.js"></script>

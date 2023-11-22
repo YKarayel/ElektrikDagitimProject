@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@5.2.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "popper.js@2.11.6",
+      "destination": "wwwroot/lib/popper/"
+    },
+    {
+      "library": "jquery@3.6.3",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "font-awesome@6.2.1",
+      "destination": "wwwroot/lib/fontawesome/"
+    },
+    {
+      "library": "jquery-validate@1.19.5",
+      "destination": "wwwroot/lib/jquery-validate/"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "jquery.serializeJSON@3.2.1",
+      "destination": "wwwroot/lib/jquery-serialize/"
+    },
+    {
+      "library": "exceljs@4.3.0",
+      "destination": "wwwroot/lib/exceljs/"
+    },
+    {
+      "library": "FileSaver.js@2.0.5",
+      "destination": "wwwroot/lib/file-saver/"
+    },
+    {
+      "library": "globalize@1.7.0",
+      "destination": "wwwroot/lib/globalize/"
+    },
+    {
+      "library": "jquery.mask@1.14.16",
+      "destination": "wwwroot/lib/mask/"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/devextreme/dist/css/icons/",
+      "destination": "wwwroot/css/icons",
+      "files": [
+        "dxicons.ttf",
+        "dxicons.woff2",
+        "dxicons.woff"
+      ]
+    },
+    {
+      "library": "jqueryui@1.13.2",
+      "destination": "wwwroot/lib/jquery-ui/"
+    },
+    {
+      "library": "knockout@3.5.1",
+      "destination": "wwwroot/lib/knockout/"
+    }
+  ]
+}

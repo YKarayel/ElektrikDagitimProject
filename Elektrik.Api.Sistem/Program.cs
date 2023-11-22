@@ -2,6 +2,7 @@ using Dal.Abstract;
 using Dal.Concrete;
 using Dal.Concrete.Sistem;
 using ElektrikDagýtým.Dal.Concrete.Middlewares;
+using ElektrikDagýtým.Dal.Concrete.Muhasebe;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +23,8 @@ var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connStr));
 
 builder.Services.AddScoped<AppDbContext>();
+builder.Services.AddScoped<Fatura_Islemleri>();
+builder.Services.AddScoped<Tahsilat_Islemleri>();
 builder.Services.AddScoped<Kullanici_Islemleri>();
 builder.Services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepository<>));
 

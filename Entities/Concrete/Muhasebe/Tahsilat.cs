@@ -13,12 +13,9 @@ namespace ElektrikDagıtım.Entities.Concrete.Muhasebe
     {
         [Required]
         public int AboneId { get; set; }
-        [Required]
-        public List<FATURA> FaturaId { get; set; }
         public double KdvOncesiTutar { get; set; }
 
         [Display(Name = "Kdv Oranı")]
-        [Column(TypeName = "decimal(18,4)")]
         [Required(ErrorMessage = "Doldurulması zorunludur!")]
         public double KdvOranı { get; set; } = 0.20;
 

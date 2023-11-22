@@ -2,6 +2,7 @@
 using ElektrikDagıtım.Entities.Concrete.General;
 using ElektrikDagıtım.Entities.Concrete.Muhasebe;
 using ElektrikDagıtım.Entities.Concrete.Sistem;
+using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,30 +31,17 @@ namespace Dal.Concrete
             
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {         
-            //admin işlemleri
-            modelBuilder.Entity<ABONE>().HasData(new ABONE
-            {
-                ObjectId = 1,
-                AdSoyad = "admin",
-                Eposta = "admin@admin.com",
-                Sifre = Sifreleme_Islemleri.Sifrele("123"),
-                GsmNo = "05419999999",
-                TC = "12345678910",
-                Aktif = true,
-                KayıtTarih = DateTime.Now,
-                YetkiId = 1
-            });
+        {
+            modelBuilder.Entity<V_FATURA>().ToView("V_FATURALAR");
+            modelBuilder.Entity<V_TAHSILAT>().ToView("V_TAHSILATLAR");
 
-            modelBuilder.Entity<BUTCE_BILGI>().HasData(new BUTCE_BILGI
-            {
-                ObjectId = 1,
-                ButceName = "Ana Bütçe",
-                Butce = 1000000
 
-            });
             base.OnModelCreating(modelBuilder);
         }
+
+        
+
+
         public DbSet<KULLANICI_YETKI> KULLANICI_YETKILERI {  get; set; }
         public DbSet<ABONE> ABONELER { get; set; }
         public DbSet<ABONE_BORC> ABONE_BORCLARI { get; set; }

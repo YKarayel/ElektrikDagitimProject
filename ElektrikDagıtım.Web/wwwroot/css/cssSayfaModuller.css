@@ -1,0 +1,226 @@
+﻿
+
+/** {
+    padding: 1px;
+    margin: 0px;
+    box-sizing: border-box;
+}*/
+
+
+.row {
+    /*  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-flow: wrap;
+    padding-top: 0px;
+    padding-right: 0px;*/
+    margin: 0px;
+}
+
+.container {
+/*    width: 40%;*/
+    margin: 25px auto;
+}
+
+.dvYonetimNav {
+    border-bottom: 2px solid #a0b7e173;
+    background-color: #fff;
+}
+
+
+
+.lnkBildirim {
+   /* border: 1px solid #288390;*/
+    border-radius: 10px;
+}
+
+.kullaniciButton {
+    border: 1px solid #288390 !important;
+    border-radius: 10px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.kullaniciCikis {
+    border: 1px solid #288390 !important;
+    border-radius: 10px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.dvIcerik {
+    background-color: #cecece42;
+    padding-top: 20%;
+    /*  padding-bottom: 28%;
+    max-height:100%;*/
+}
+
+.dvIcerik_Sayfa {
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: -5px 8px 12px #a1c0e0;
+    margin-bottom: 4%;
+    padding-bottom: 9%;
+    margin-top: -19%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+
+.sayilarDasboard {
+    color: #9c8585;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+/*.card {
+    width: 15%;
+    border: 1px solid #ccc;
+    margin-bottom: 50px;
+    transition: 0.3s;
+    color: #9c8585;
+    margin-left: 33px;
+    margin-bottom: 10px;
+}*/
+
+
+/*.cardBaslikCss {
+    color: #434f70d1;
+}*/
+/*
+.sutun1 {
+    border: 1px solid rgb(61 186 206);
+    background: rgb(11 194 223 / 36%);
+    border-radius: 22px;
+    margin-bottom: 3%;
+    margin-top: 1%;
+}
+
+
+.sutun2 {
+    border: 1px solid rgb(86 162 255);
+    background: rgb(57 142 228 / 42%);
+    border-radius: 22px;
+    margin-bottom: 3%;
+    margin-top: 1%;
+}
+
+
+.sutun3 {
+    border: 1px solid rgb(99 170 255);
+    background: rgb(164 184 255 / 52%);
+    border-radius: 22px;
+    margin-bottom: 3%;
+    margin-top: 1%;
+}
+.sutun4 {
+    border: 1px solid rgb(99 170 255);
+    background: rgb(164 184 255 / 52%);
+    border-radius: 22px;
+    margin-bottom: 3%;
+    margin-top: 1%;
+}*/
+
+.card-header {
+    text-align: center;
+    /*  padding: 25px 10px;*/
+    white-space: nowrap;
+    border-radius: 22px;
+}
+
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+}
+
+.agarthaBaslik {
+    /*  border: 1px solid #026d7dd9;*/
+    text-align: center;
+    height: 100px;
+    color: #0d497e;
+    background-color: #026d7d12;
+    font-size: 22px;
+}
+
+
+
+.card-title {
+    word-wrap: break-word;
+    color: #003f6c;
+    text-align: center;
+    /* padding: 0px; */
+    /* margin: 0px; */
+    /* flex-wrap: nowrap; */
+    font-variant: all-petite-caps !important;
+}
+
+.BtnModulGit {
+    color: #fbf6f6;
+    border-color: #017181;
+    background-color: #0ba3b5;
+    margin-top: -8px;
+}
+
+    .BtnModulGit:hover {
+        color: #87f1ff;
+        border-color: #5ed3e3;
+    }
+
+@media(max-width:667px) {
+    .dvIcerik_Sayfa, .dvIcerik, {
+        width: 100%;
+        max-width: 100%;
+        flex: 100%;
+        height: auto;
+    }
+}
+
+.search {
+    border: 1px solid #05b8d4;
+    overflow: auto;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+    .search input[type="text"] {
+        border: 0px;
+        width: 67%;
+        padding: 10px 10px;
+    }
+
+        .search input[type="text"]:focus {
+            outline: 0;
+        }
+
+    .search button[type="submit"] {
+        border: 0px;
+        background: none;
+        background-color: #05b8d4;
+        color: #fff;
+        float: right;
+        padding: 10px;
+        border-radius-top-right: 5px;
+        -moz-border-radius-top-right: 5px;
+        -webkit-border-radius-top-right: 5px;
+        border-radius-bottom-right: 5px;
+        -moz-border-radius-bottom-right: 5px;
+        -webkit-border-radius-bottom-right: 5px;
+        width:50px;
+        border-radius:5px;
+        cursor: pointer;
+    }
+
+
+
+@media only screen and (min-width : 150px) and (max-width : 780px) {
+
+    .search {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+

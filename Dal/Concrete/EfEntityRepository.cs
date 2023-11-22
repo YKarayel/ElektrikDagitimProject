@@ -1,4 +1,5 @@
 ﻿using Dal.Abstract;
+using ElektrikDagıtım.Entities.Concrete.Muhasebe;
 using Entities.Concrete.General;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -27,7 +28,8 @@ namespace Dal.Concrete
             Mesajlar<TEntity> m = new Mesajlar<TEntity>();
             try
             {
-                cnt.Update(ent);
+                cnt.Entry<TEntity>(ent).State = EntityState.Modified;
+                cnt.Update<TEntity>(ent);
 
                 cnt.SaveChanges();
 

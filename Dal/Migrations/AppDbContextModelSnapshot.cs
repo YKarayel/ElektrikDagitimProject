@@ -48,10 +48,10 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.HasKey("ObjectId");
 
-                    b.ToTable("LOGLAR");
+                    b.ToTable("LOGLAR", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Muhasebe.BUTCE_BILGI", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.Muhasebe.BUTCE_BILGI", b =>
                 {
                     b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
@@ -80,19 +80,10 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.HasKey("ObjectId");
 
-                    b.ToTable("BUTCE_BILGILERI");
-
-                    b.HasData(
-                        new
-                        {
-                            ObjectId = 1,
-                            Aktif = false,
-                            Butce = 1000000L,
-                            ButceName = "Ana Bütçe"
-                        });
+                    b.ToTable("BUTCE_BILGILERI", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Muhasebe.FATURA", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.Muhasebe.FATURA", b =>
                 {
                     b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
@@ -105,6 +96,10 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.Property<bool>("Aktif")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Donem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DuzeltmeTarihi")
                         .HasColumnType("datetime");
@@ -119,8 +114,8 @@ namespace ElektrikDagıtım.Dal.Migrations
                     b.Property<DateTime?>("KayıtTarih")
                         .HasColumnType("datetime");
 
-                    b.Property<decimal>("Kdv")
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<double>("Kdv")
+                        .HasColumnType("float");
 
                     b.Property<double>("KdvOncesiTutar")
                         .HasColumnType("float");
@@ -131,17 +126,15 @@ namespace ElektrikDagıtım.Dal.Migrations
                     b.Property<DateTime?>("SilmeTarihi")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("TAHSILATObjectId")
+                    b.Property<int?>("TahsilatId")
                         .HasColumnType("int");
 
                     b.HasKey("ObjectId");
 
-                    b.HasIndex("TAHSILATObjectId");
-
-                    b.ToTable("FATURALAR");
+                    b.ToTable("FATURALAR", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Muhasebe.TAHSILAT", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.Muhasebe.TAHSILAT", b =>
                 {
                     b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
@@ -168,8 +161,8 @@ namespace ElektrikDagıtım.Dal.Migrations
                     b.Property<double>("KdvOncesiTutar")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("KdvOranı")
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<double>("KdvOranı")
+                        .HasColumnType("float");
 
                     b.Property<DateTime?>("SilmeTarihi")
                         .HasColumnType("datetime");
@@ -179,10 +172,10 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.HasKey("ObjectId");
 
-                    b.ToTable("TAHSILATLAR");
+                    b.ToTable("TAHSILATLAR", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Sistem.ABONE", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.Sistem.ABONE", b =>
                 {
                     b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
@@ -232,24 +225,10 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.HasKey("ObjectId");
 
-                    b.ToTable("ABONELER");
-
-                    b.HasData(
-                        new
-                        {
-                            ObjectId = 1,
-                            AdSoyad = "admin",
-                            Aktif = true,
-                            Eposta = "admin@admin.com",
-                            GsmNo = "05419999999",
-                            KayıtTarih = new DateTime(2023, 11, 6, 17, 57, 52, 654, DateTimeKind.Local).AddTicks(3484),
-                            Sifre = "ꉟ뺾昊ﰺꄄ헻",
-                            TC = "12345678910",
-                            YetkiId = 1
-                        });
+                    b.ToTable("ABONELER", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Sistem.ABONE_BORC", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.Sistem.ABONE_BORC", b =>
                 {
                     b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
@@ -277,10 +256,10 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.HasKey("ObjectId");
 
-                    b.ToTable("ABONE_BORCLARI");
+                    b.ToTable("ABONE_BORCLARI", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Sistem.KULLANICI_YETKI", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.Concrete.Sistem.KULLANICI_YETKI", b =>
                 {
                     b.Property<int>("ObjectId")
                         .ValueGeneratedOnAdd()
@@ -306,19 +285,73 @@ namespace ElektrikDagıtım.Dal.Migrations
 
                     b.HasKey("ObjectId");
 
-                    b.ToTable("KULLANICI_YETKILERI");
+                    b.ToTable("KULLANICI_YETKILERI", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Muhasebe.FATURA", b =>
+            modelBuilder.Entity("ElektrikDagıtım.Entities.ViewModel.Muhasebe.V_FATURA", b =>
                 {
-                    b.HasOne("Entities.Concrete.Muhasebe.TAHSILAT", null)
-                        .WithMany("FaturaId")
-                        .HasForeignKey("TAHSILATObjectId");
-                });
+                    b.Property<int>("ObjectId")
+                        .HasColumnType("int");
 
-            modelBuilder.Entity("Entities.Concrete.Muhasebe.TAHSILAT", b =>
-                {
-                    b.Navigation("FaturaId");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObjectId"), 1L, 1);
+
+                    b.Property<int>("AboneId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdSoyad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Aktif")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Donem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DuzeltmeTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Eposta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("FaturaBedeli")
+                        .HasColumnType("float");
+
+                    b.Property<string>("GsmNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HizmetAdı")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("KayıtTarih")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Kdv")
+                        .HasColumnType("float");
+
+                    b.Property<double>("KdvOncesiTutar")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Odendi")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("SilmeTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TahsilatId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ObjectId");
+
+                    b.ToView("V_FATURALAR");
                 });
 #pragma warning restore 612, 618
         }

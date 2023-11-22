@@ -82,10 +82,21 @@ namespace Dal.Concrete.Sistem
                     m.Durum = false; 
                     return m;
                 }
+
+                abone.AdSoyad.ToLower();
+                string[] words = abone.AdSoyad.Split(" ");
+                string result = "";
+                foreach (string word in words)
+                {
+                    result += char.ToUpper(word[0]) + word.Substring(1).ToLower() + " ";
+                }
+                abone.AdSoyad = result.TrimEnd();
+
+
                 _abnrepo.Ekle(new ABONE
                 {
 
-                    AdSoyad = abone.AdSoyad.ToLower(),
+                    AdSoyad = abone.AdSoyad,
                     Sifre = Sifreleme_Islemleri.Sifrele(abone.Sifre),
                     Eposta = abone.Eposta.ToLower(),
                     TC = abone.TC,
@@ -94,6 +105,8 @@ namespace Dal.Concrete.Sistem
                     Aktif = true,
                     KayıtTarih = DateTime.Now
                 });
+
+                
 
                 m.Durum = true;
                 m.Mesaj = "Abone başarıyla kaydedildi";

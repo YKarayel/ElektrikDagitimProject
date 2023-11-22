@@ -31,7 +31,6 @@ function Login() {
 }
 
 $(document).ready(function () {
-    
     $('#btngiris').click(function () {
         var sonuc = $('#frmGirisForm').valid();
         if (sonuc = true) {
@@ -48,5 +47,4 @@ document.addEventListener('keyup', (event) => {
         var btn = $('#btngiris');
         btn.click();
     }
-    
 }, false);

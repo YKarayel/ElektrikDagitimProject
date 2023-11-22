@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Abstract;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ElektrikDagıtım.Entities.Concrete.Muhasebe
 {
@@ -14,8 +15,8 @@ namespace ElektrikDagıtım.Entities.Concrete.Muhasebe
         public string HizmetAdı { get; set; } = "Elektrik Dağıtım Bedeli";
         [Required]
         public double FaturaBedeli { get; set; }
-
-        [Column(TypeName = "decimal(18,4)")]
+        public int? TahsilatId { get; set; }
+        public string Donem { get; set; } = "2023/1";
         public double Kdv { get; set; } = 0.20;
         public double KdvOncesiTutar { get; set; }
         [Required]

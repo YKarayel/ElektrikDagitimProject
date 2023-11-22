@@ -1,5 +1,6 @@
 ﻿using ElektrikDagıtım.Entities.Concrete.Sistem;
 using ElektrikDagıtım.Entities.ViewModel;
+using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
 using ElektrikDagıtım.Web.Models;
 using Entities.Concrete.General;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace ElektrikDagıtım.Web.Controllers
 
             }
         }
-
+       
         public IActionResult Index()
         {
             HttpContext.Session.Clear();
@@ -67,9 +68,9 @@ namespace ElektrikDagıtım.Web.Controllers
             {
                 new AnaSayfaYetki() {YetkiAdi= "Faturalar", YetkiDurum = false, modulAd = "Faturalar", modulIcon = "fa fa-calculator", modulUrl = "/Muhasebe/Muhasebe/Faturalar"},
                 new AnaSayfaYetki() {YetkiAdi= "Tahsilatlar", YetkiDurum = false, modulAd = "Tahsilatlar", modulIcon = "fa fa-handshake", modulUrl = "/Muhasebe/Muhasebe/Tahsilatlar"},
-                new AnaSayfaYetki() {YetkiAdi= "Profil Ayarları", YetkiDurum = false, modulAd = "Profil", modulIcon = "fa-solid fa-user-gear", modulUrl = "/Home/Profil"}
-            };
+                new AnaSayfaYetki() {YetkiAdi= "Abonelik Sonlandırma", YetkiDurum = false, modulAd = "Abonelik Sonlandırma", modulIcon = "fa-solid fa-square-arrow-up-right", modulUrl = "/Sistem/Sistem/AbonelikSonlandirma"},
 
+            };
 
             return View(m);
         }

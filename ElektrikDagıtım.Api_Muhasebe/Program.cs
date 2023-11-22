@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Newtonsoft.Json.Serialization;
+using ElektrikDagýtým.Dal.Concrete.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
 // Add services to the container.
 
-
-var config = builder.Configuration;
 
 builder.Services.AddMvc(x => x.EnableEndpointRouting = false).AddViewOptions(opt => opt.HtmlHelperOptions.ClientValidationEnabled = true).AddNewtonsoftJson(x => x.SerializerSettings.ContractResolver = new DefaultContractResolver());
 builder.Services.AddCors();
@@ -22,7 +22,8 @@ var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connStr));
 
 builder.Services.AddScoped<AppDbContext>();
-builder.Services.AddScoped<Muhasebe_Islemleri>();
+builder.Services.AddScoped<Fatura_Islemleri>();
+builder.Services.AddScoped<Tahsilat_Islemleri>();
 builder.Services.AddScoped<Kullanici_Islemleri>();
 builder.Services.AddScoped(typeof(IEntityRepository<>), typeof(EfEntityRepository<>));
 
@@ -90,7 +91,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

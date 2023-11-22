@@ -13,7 +13,7 @@ namespace ElektrikDagıtım.Web.Controllers
        
         public ABONE _baseAbone { get; set; }
         public string _baseToken { get; set; }
-
+        public string _WebUrl { get; }
 
         public BaseController(IHttpContextAccessor cnt, IConfiguration cfg)
         {
@@ -33,6 +33,8 @@ namespace ElektrikDagıtım.Web.Controllers
                 _baseAbone = login.Abone;
                 _baseToken = login.Token;
             }
+
+            _WebUrl = _cfg.GetValue<string>("WebUrl");
 
             if (_baseAbone == null)
             {

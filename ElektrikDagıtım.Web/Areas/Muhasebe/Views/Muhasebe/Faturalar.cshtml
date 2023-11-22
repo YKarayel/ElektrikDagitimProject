@@ -1,3 +1,147 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="container mt-5 px-2">
+
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+
+        <div class="position-relative">
+            <span class="position-absolute search"><i class="fa fa-search"></i></span>
+            <input class="form-control w-100" placeholder="Search by order#, name...">
+        </div>
+
+
+    </div>
+    <div class="table-responsive">
+        <table id="faturaTable" class="table table-responsive table-borderless">
+
+            <thead class="border">
+                <tr class="bg-light">
+                    <th scope="col" width="1%"></th>
+                    <th scope="col" width="7%">Fatura No</th>
+                    <th scope="col" width="7%">Tarih</th>
+                    <th scope="col" width="10%">Fatura Dönemi</th>
+                    <th scope="col" width="10%">Abone Adı</th>
+                    <th scope="col" width="14%">Açıklama</th>
+                    <th scope="col" width="11%">KDV Öncesi Tutar</th>
+                    <th scope="col" width="5%">KDV</th>
+                    <th scope="col" width="10%"><span>Fatura Tutarı</span></th>
+                    <th scope="col" width="9%">Tahsilat No</th>
+                    <th scope="col" width="10%">Ödeme Yap</th>
+                    <th scope="col" width="10%">Görüntüle</th>
+
+
+                </tr>
+            </thead>
+            <tbody id="ftrbody">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade modal-lg" id="odemeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            <!-- Credit card form -->
+            <section>
+                <div class="row">
+                    <div class="col-md-8 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form>
+                                   
+
+                                    <h5 class="mb-4">Payment</h5>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm3"
+                                               checked />
+                                        <label class="form-check-label" for="checkoutForm3">
+                                            Kredi Kartı
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm5" />
+                                        <label class="form-check-label" for="checkoutForm5">
+                                            Paypal
+                                        </label>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <input type="text" id="formNameOnCard" class="form-control" />
+                                                <label class="form-label" for="formNameOnCard">Ad Soyad</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <input type="text" id="formCardNumber" class="form-control" />
+                                                <label class="form-label" for="formCardNumber">Kredi kartı numarası</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col-3">
+                                            <div class="form-outline">
+                                                <input type="text" id="formExpiration" class="form-control" />
+                                                <label class="form-label" for="formExpiration">Son kullanma tarihi</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline">
+                                                <input type="text" id="formCVV" class="form-control" />
+                                                <label class="form-label" for="formCVV">CVV</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button id="odemedvm" class="btn btn-primary btn-lg btn-block" type="submit" onclick="OdemeDevam()">
+                                        Ödemeye devam et
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0">Faturalar</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush" id="ulfatura">
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Credit card form -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    var userId = @ViewData["userId"];
+    var userName = "@ViewData["user"]";
+    var token = "@ViewData["token"]";
+</script>
+
+<script src="~/js/area/muhasebe/faturalar.js"></script>

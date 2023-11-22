@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+this page is Ödeme yap
+<p id="data"></p>
+
+<script>
+    $(document).ready(function(){
+        var faturalar = @ViewData["faturalar"]
+        for(var i = 0; i<faturalar.lenght; i++){
+            
+        ('#data') = faturalar[i];
+        }
+    })
+
+</script>
