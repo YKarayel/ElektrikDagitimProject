@@ -1,17 +1,17 @@
-﻿using Dal.Abstract;
-using Dal.Concrete;
-using Dal.Concrete.Sistem;
-using Entities.Concrete.General;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.Concrete.Sistem;
+﻿using ElektrikDagitim.Dal.Concrete;
+using ElektrikDagitim.Entities.Concrete.Sistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Dal.Abstract;
+using ElektrikDagitim.Dal.Concrete.Sistem;
 
-namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
+namespace ElektrikDagitim.Dal.Concrete.Muhasebe
 {
     public class Fatura_Islemleri
     {
@@ -43,7 +43,7 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                 m.Durum = false;
                 m.Mesaj = ex.Message;
             }
-            
+
             return m;
         }
 
@@ -78,7 +78,7 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                 m.Mesaj = ex.Message;
                 return m;
             }
-         
+
 
         }
 
@@ -122,7 +122,7 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                 m.Mesaj = ex.Message;
 
             }
-            
+
 
             return m;
 
@@ -161,8 +161,8 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                     m.Liste = l;
                     m.Durum = true;
                 }
-                
-                
+
+
 
             }
             catch (Exception ex)
@@ -171,30 +171,28 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                 m.Durum = false;
                 m.ExMessage = ex.StackTrace;
             }
-          
+
 
             return m;
-        } 
+        }
 
         public Mesajlar<FATURA> Donem_Faturasi_Ekle(FATURA fatura)
         {
             try
             {
                 fatura.KayıtTarih = DateTime.Now;
-                fatura.KdvOncesiTutar = fatura.FaturaBedeli - (fatura.FaturaBedeli * fatura.Kdv);
+                fatura.KdvOncesiTutar = fatura.FaturaBedeli / (1 + fatura.Kdv);
                 var m = _faturaRepo.Ekle(fatura);
                 return m;
             }
             catch (Exception)
             {
-
                 Mesajlar<FATURA> m = new Mesajlar<FATURA>();
                 m.Durum = false;
                 return m;
-
             }
-            
-            
+
+
         }
         public Mesajlar<TAHSILAT> Fatura_Ode(int aboneId, List<FATURA> faturalar)
         {
@@ -202,12 +200,12 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
             try
             {
 
-                double tahsilatTutari = 0;
+                decimal tahsilatTutari = 0;
                 TAHSILAT tahsilat = new TAHSILAT();
 
                 tahsilat.TahsilatTutari = 0;
                 tahsilat.KdvOncesiTutar = 0;
-                tahsilat.KdvOranı = 0.20;
+                tahsilat.KdvOranı = 0.20m;
                 tahsilat.Aktif = true;
                 tahsilat.KayıtTarih = DateTime.Now;
                 tahsilat.AboneId = aboneId;
@@ -217,18 +215,18 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
 
                 foreach (var fatura in faturalar)
                 {
-                        {
-                            tahsilatTutari += fatura.FaturaBedeli;
-                            fatura.Odendi = true;
-                            fatura.TahsilatId = tahsilat.ObjectId;
+                    {
+                        tahsilatTutari += fatura.FaturaBedeli;
+                        fatura.Odendi = true;
+                        fatura.TahsilatId = tahsilat.ObjectId;
 
-                            _faturaRepo.Duzelt(fatura);
-                        }
+                        _faturaRepo.Duzelt(fatura);
+                    }
                 }
                 tahsilat.TahsilatTutari = tahsilatTutari;
-                tahsilat.KdvOncesiTutar = tahsilat.TahsilatTutari - (tahsilat.TahsilatTutari * tahsilat.KdvOranı);
+                tahsilat.KdvOncesiTutar = tahsilat.TahsilatTutari - tahsilat.TahsilatTutari * tahsilat.KdvOranı;
                 _tahsilat.Duzelt(tahsilat);
-                
+
             }
             catch (Exception)
             {
@@ -244,26 +242,38 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
             try
             {
                 var hasData = _faturaRepo.Getir(x => x.ObjectId == fatura.ObjectId).Nesne;
-                if (hasData != null && hasData.Aktif)
+                if (hasData != null)
                 {
                     hasData.DuzeltmeTarihi = DateTime.Now;
+                    hasData.Aktif = fatura.Aktif;
+                    hasData.AboneId = fatura.AboneId;
 
-                    if(fatura.HizmetAdı != null)
+                    if (fatura.HizmetAdı != null)
                         hasData.HizmetAdı = fatura.HizmetAdı;
 
-                    if(fatura.Donem != null) 
+                    if (fatura.Donem != null)
                         hasData.Donem = fatura.Donem;
 
-                    if (fatura.FaturaBedeli != 0 )
+                    if (fatura.FaturaBedeli != 0)
                     {
                         hasData.FaturaBedeli = fatura.FaturaBedeli;
-                        hasData.KdvOncesiTutar = hasData.FaturaBedeli -(hasData.FaturaBedeli * 0.20);
+                        hasData.KdvOncesiTutar = hasData.FaturaBedeli / (1 + hasData.Kdv);
                     }
-                    if(fatura.Odendi != null)
+                    if (fatura.Odendi != null)
                         hasData.Odendi = fatura.Odendi;
 
                     if (fatura.KayıtTarih != null)
                         hasData.KayıtTarih = fatura.KayıtTarih;
+
+                    if (fatura.SilmeTarihi != null)
+                        hasData.SilmeTarihi = fatura.SilmeTarihi;
+
+                    if (fatura.TahsilatId != null)
+                        hasData.TahsilatId = fatura.TahsilatId;
+
+
+
+
 
 
                     var dalM = _faturaRepo.Duzelt(hasData);
@@ -271,17 +281,42 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                 }
                 else
                 {
-                    m.Durum=false;
+                    m.Durum = false;
                     return m;
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 m.Durum = false;
                 m.Mesaj = ex.Message;
                 return m;
             }
-            
+
+        }
+
+        public Mesajlar<FATURA> Fatura_KDV_Oncesi_Guncelle()
+        {
+            Mesajlar<FATURA> m = new Mesajlar<FATURA>();
+            try
+            {
+                var faturalar = _faturaRepo.Tum_Listele();
+                if (faturalar != null)
+                {
+                    foreach (var item in faturalar.Liste)
+                    {
+                        item.KdvOncesiTutar = item.FaturaBedeli / (1 + item.Kdv);
+                        _faturaRepo.Duzelt(item);
+                    }
+
+                }
+                m = _faturaRepo.Tum_Listele();
+                return m;
+            }
+            catch(Exception ex) 
+            {
+                m.Durum = false;
+                return m;
+            }
         }
 
         public Mesajlar<V_FATURA> Abone_V_Fatura_Listele(int aboneId)
@@ -290,24 +325,24 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
             try
             {
                 var hasData = _vFatura.Listele(x => x.AboneId == aboneId);
-                if(hasData.Liste != null)
+                if (hasData.Liste != null)
                 {
                     m.Durum = true;
                     m.Liste = hasData.Liste;
                 }
                 else
                     m.Durum = false;
-                
-                
+
+
             }
             catch (Exception ex)
             {
-                m.Mesaj =ex.Message +" "+ ex.StackTrace;
+                m.Mesaj = ex.Message + " " + ex.StackTrace;
             }
 
             return m;
         }
-        public Mesajlar<V_FATURA> V_Fatura_Getir(int faturaId) 
+        public Mesajlar<V_FATURA> V_Fatura_Getir(int faturaId)
         {
             Mesajlar<V_FATURA> m = new Mesajlar<V_FATURA>();
             try
@@ -331,10 +366,55 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
             return m;
         }
 
-        
+
+        public Mesajlar<V_FATURA> Tum_V_Fatura_Listele()
+        {
+            Mesajlar<V_FATURA> m = new Mesajlar<V_FATURA>();
 
 
+            try
+            {
+                var hasData = _vFatura.Tum_Listele().Liste;
+                if (hasData != null)
+                {
+                    m.Durum = true;
+                    m.Liste = hasData;
+                }
+                else
+                    m.Durum = false;
 
 
+            }
+            catch (Exception ex)
+            {
+                m.Mesaj = ex.Message + " " + ex.StackTrace;
+            }
+
+            return m;
+        }
+
+        public Mesajlar<FATURA> Fatura_Sil(int faturaId)
+        {
+            Mesajlar<FATURA> m = new Mesajlar<FATURA>();
+            try
+            {
+
+                var fatura = _faturaRepo.Getir(x => x.ObjectId == faturaId).Nesne;
+                if (fatura != null)
+
+                    m = _faturaRepo.Sil(fatura);
+                else
+                {
+                    m.Durum = false;
+                    m.Mesaj = "Bu faturaya ait id bulunamadı.";
+                }
+            }
+            catch (Exception ex)
+            {
+                m.Mesaj = ex.Message + " " + ex.StackTrace;
+            }
+
+            return m;
+        }
     }
 }

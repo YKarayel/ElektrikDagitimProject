@@ -1,7 +1,4 @@
-﻿using Dal.Abstract;
-using Entities.Concrete.General;
-using ElektrikDagıtım.Entities.Concrete.Sistem;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +6,11 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Nodes;
+using ElektrikDagitim.Entities.Concrete.Sistem;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Dal.Abstract;
 
-namespace Dal.Concrete.Sistem
+namespace ElektrikDagitim.Dal.Concrete.Sistem
 {
     public class Kullanici_Islemleri
     {
@@ -44,12 +44,12 @@ namespace Dal.Concrete.Sistem
             Mesajlar<ABONE> m = new Mesajlar<ABONE>();
             try
             {
-               var abone = _abnrepo.Getir(x => x.Aktif == true && x.Eposta == eposta.ToLower() && x.Sifre == Sifreleme_Islemleri.Sifrele(sifre)).Nesne;
+                var abone = _abnrepo.Getir(x => x.Aktif == true && x.Eposta == eposta.ToLower() && x.Sifre == Sifreleme_Islemleri.Sifrele(sifre)).Nesne;
                 if (abone == null)
                 {
                     m.Durum = false;
                     m.Mesaj = "Yetkisiz Kullanıcı";
-                   
+
                 }
                 else
                 {
@@ -65,9 +65,9 @@ namespace Dal.Concrete.Sistem
                 return m;
             }
             return m;
-        } 
+        }
 
-        public Mesajlar<ABONE> Yeni_Abone(ABONE abone) 
+        public Mesajlar<ABONE> Yeni_Abone(ABONE abone)
         {
             Mesajlar<ABONE> m = new Mesajlar<ABONE>();
 
@@ -76,10 +76,10 @@ namespace Dal.Concrete.Sistem
 
                 var isAbone = _abnrepo.Getir(x => x.Eposta == abone.Eposta.ToLower());
 
-                if (isAbone.Nesne!=null)
+                if (isAbone.Nesne != null)
                 {
-                    m.Mesaj = "Bu e-postaya ait zaten bir kayıt mevcut"; 
-                    m.Durum = false; 
+                    m.Mesaj = "Bu e-postaya ait zaten bir kayıt mevcut";
+                    m.Durum = false;
                     return m;
                 }
 
@@ -106,7 +106,7 @@ namespace Dal.Concrete.Sistem
                     KayıtTarih = DateTime.Now
                 });
 
-                
+
 
                 m.Durum = true;
                 m.Mesaj = "Abone başarıyla kaydedildi";
@@ -114,12 +114,12 @@ namespace Dal.Concrete.Sistem
             }
             catch (Exception ex)
             {
-                m.Durum= false;
+                m.Durum = false;
                 m.Mesaj = "Lütfen doğru veri giriniz";
             }
             return m;
 
-        } 
+        }
         public Mesajlar<ABONE> Tum_Aboneleri_Getir()
         {
             Mesajlar<ABONE> m = new Mesajlar<ABONE>();
@@ -128,7 +128,7 @@ namespace Dal.Concrete.Sistem
             m.Durum = true;
 
             return m;
-        } 
+        }
         public Mesajlar<KULLANICI_YETKI> Abone_Kullanıcı_Yetki_Getir(int aboneId)
         {
             Mesajlar<KULLANICI_YETKI> m = new Mesajlar<KULLANICI_YETKI>();
@@ -149,7 +149,7 @@ namespace Dal.Concrete.Sistem
         public Mesajlar<ABONE> Abone_Getir(int aboneId)
         {
             var m = _abnrepo.Getir(x => x.ObjectId == aboneId);
-            if(m.Nesne == null)
+            if (m.Nesne == null)
             {
                 m.Durum = false;
                 m.Mesaj = "Bu Id'ye ait bir abone mevcut değil";

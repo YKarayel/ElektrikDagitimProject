@@ -64,7 +64,7 @@ else
     app.UseHsts();
 }
 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin());
+app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 RequestCulture culture = new RequestCulture("tr-TR");
 culture.Culture.NumberFormat.NumberDecimalSeparator = ",";

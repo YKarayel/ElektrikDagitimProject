@@ -1,8 +1,8 @@
-﻿using ElektrikDagıtım.Entities.Concrete.Sistem;
+﻿using ElektrikDagitim.Entities.Concrete.Sistem;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace ElektrikDagıtım.Web.Controllers
+namespace ElektrikDagitim.Web.Controllers
 {
     public class BaseController : Controller
     {

@@ -1,8 +1,8 @@
-﻿using Entities.Concrete.General;
+﻿using ElektrikDagitim.Entities.Concrete.General;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
-namespace Dal.Abstract
+namespace ElektrikDagitim.Dal.Abstract
 {
     public interface IEntityRepository<T> where T : class
     {

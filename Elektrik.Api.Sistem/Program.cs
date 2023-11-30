@@ -1,8 +1,8 @@
-using Dal.Abstract;
-using Dal.Concrete;
-using Dal.Concrete.Sistem;
-using ElektrikDagýtým.Dal.Concrete.Middlewares;
-using ElektrikDagýtým.Dal.Concrete.Muhasebe;
+using ElektrikDagitim.Dal.Abstract;
+using ElektrikDagitim.Dal.Concrete;
+using ElektrikDagitim.Dal.Concrete.Middlewares;
+using ElektrikDagitim.Dal.Concrete.Muhasebe;
+using ElektrikDagitim.Dal.Concrete.Sistem;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

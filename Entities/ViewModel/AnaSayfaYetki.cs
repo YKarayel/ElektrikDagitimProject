@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElektrikDagıtım.Entities.ViewModel
+namespace ElektrikDagitim.Entities.ViewModel
 {
     public class AnaSayfaYetki
     {

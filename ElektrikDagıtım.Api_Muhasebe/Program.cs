@@ -1,13 +1,13 @@
-using Dal.Abstract;
-using Dal.Concrete.Sistem;
-using Dal.Concrete;
-using ElektrikDagýtým.Dal.Concrete.Muhasebe;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Newtonsoft.Json.Serialization;
-using ElektrikDagýtým.Dal.Concrete.Middlewares;
+using ElektrikDagitim.Dal.Concrete.Middlewares;
+using ElektrikDagitim.Dal.Concrete.Muhasebe;
+using ElektrikDagitim.Dal.Abstract;
+using ElektrikDagitim.Dal.Concrete.Sistem;
+using ElektrikDagitim.Dal.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;

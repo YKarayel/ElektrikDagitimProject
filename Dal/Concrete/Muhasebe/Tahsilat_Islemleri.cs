@@ -1,15 +1,15 @@
-﻿using Dal.Abstract;
-using Dal.Concrete.Sistem;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
-using Entities.Concrete.General;
+﻿using ElektrikDagitim.Dal.Abstract;
+using ElektrikDagitim.Dal.Concrete.Sistem;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
+namespace ElektrikDagitim.Dal.Concrete.Muhasebe
 {
     public class Tahsilat_Islemleri
     {
@@ -64,12 +64,12 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
             try
             {
 
-                double tahsilatTutari = 0;
+                decimal tahsilatTutari = 0;
                 TAHSILAT tahsilat = new TAHSILAT();
 
                 tahsilat.TahsilatTutari = 0;
                 tahsilat.KdvOncesiTutar = 0;
-                tahsilat.KdvOranı = 0.20;
+                tahsilat.KdvOranı = 0.20m;
                 tahsilat.Aktif = true;
                 tahsilat.KayıtTarih = DateTime.Now;
                 tahsilat.AboneId = aboneId;
@@ -88,7 +88,7 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
                     }
                 }
                 tahsilat.TahsilatTutari = tahsilatTutari;
-                tahsilat.KdvOncesiTutar = tahsilat.TahsilatTutari - (tahsilat.TahsilatTutari * tahsilat.KdvOranı);
+                tahsilat.KdvOncesiTutar = tahsilat.TahsilatTutari - tahsilat.TahsilatTutari * tahsilat.KdvOranı;
                 _tahsilatRepo.Duzelt(tahsilat);
 
             }
@@ -123,5 +123,8 @@ namespace ElektrikDagıtım.Dal.Concrete.Muhasebe
 
             return m;
         }
+
+
+
     }
 }

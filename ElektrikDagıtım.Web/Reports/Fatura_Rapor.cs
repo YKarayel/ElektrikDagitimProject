@@ -2,13 +2,13 @@ using System;
 using System.Net.Http.Headers;
 using DevExpress.DataAccess.Native.Web;
 using DevExpress.XtraReports.UI;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.Concrete.Sistem;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
-using Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.Concrete.Sistem;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
 using Newtonsoft.Json;
 
-namespace ElektrikDagıtım.Web.Reports
+namespace ElektrikDagitim.Web.Reports
 {
     public partial class Fatura_Rapor
     {

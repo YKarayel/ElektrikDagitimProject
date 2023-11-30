@@ -6,9 +6,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete.General
+namespace ElektrikDagitim.Entities.Concrete.General
 {
-    public class Mesajlar<T> where T : class 
+    public class Mesajlar<T> where T : class
     {
         public bool Durum { get; set; }
         public string Mesaj { get; set; }

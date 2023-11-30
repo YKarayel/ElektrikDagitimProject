@@ -1,6 +1,5 @@
-﻿using Dal.Concrete;
-using ElektrikDagıtım.Entities.Concrete.General;
-using Entities.Concrete.General;
+﻿using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.General;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
 
-namespace ElektrikDagıtım.Dal.Concrete.Middlewares
+namespace ElektrikDagitim.Dal.Concrete.Middlewares
 {
     public class GlobalExceptionHandlerMiddleware
     {

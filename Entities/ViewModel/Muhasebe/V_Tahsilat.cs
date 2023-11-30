@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElektrikDagıtım.Entities.ViewModel.Muhasebe
+namespace ElektrikDagitim.Entities.ViewModel.Muhasebe
 {
     public class V_TAHSILAT
     {
@@ -14,20 +14,20 @@ namespace ElektrikDagıtım.Entities.ViewModel.Muhasebe
 
         public int TahsilatID { get; set; }
         public int AboneId { get; set; }
-        public double KdvOncesiTutar { get; set; }
-        public double KdvOranı { get; set; }
+        public decimal KdvOncesiTutar { get; set; }
+        public decimal KdvOranı { get; set; }
         public string Acıklama { get; set; }
-        public double TahsilatTutari { get; set; }
+        public decimal TahsilatTutari { get; set; }
         public bool Aktif { get; set; }
         public DateTime? DuzeltmeTarihi { get; set; }
         public DateTime? KayıtTarih { get; set; }
         public DateTime? SilmeTarihi { get; set; }
 
         public int FaturaObjectID { get; set; }
-        public double FaturaBedeli { get; set; }
+        public decimal FaturaBedeli { get; set; }
 
-        public double FaturaKDV { get; set; }
-        public double FaturaKdvOncesiTutar { get; set; }
+        public decimal FaturaKDV { get; set; }
+        public decimal FaturaKdvOncesiTutar { get; set; }
         public string Donem { get; set; }
         public bool FaturaAktif { get; set; }
         public string AdSoyad { get; set; }

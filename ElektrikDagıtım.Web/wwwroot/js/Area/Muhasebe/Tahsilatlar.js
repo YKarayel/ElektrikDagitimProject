@@ -1,4 +1,4 @@
-﻿/*odenmisFaturalar = [];*/
+﻿
 $(document).ready(function () {
     Tahsilatlari_Getir();
     function Tahsilatlari_Getir() {

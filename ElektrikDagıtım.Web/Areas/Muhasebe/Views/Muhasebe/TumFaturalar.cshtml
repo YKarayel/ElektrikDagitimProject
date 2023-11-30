@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="dx-viewport">
+    <div class="demo-container">
+        <div id="gridContainer"></div>
+    </div>
+</body>
+
+<script>
+    var userId = @ViewData["userId"];
+    var userName = "@ViewData["user"]";
+    var token = "@ViewData["token"]";
+ </script>
+
+<script src="~/js/area/muhasebe/tumfaturalar.js"></script>

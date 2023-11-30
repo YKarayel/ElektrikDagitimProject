@@ -6,7 +6,7 @@ using DevExpress.AspNetCore.Reporting.WebDocumentViewer.Native.Services;
 using DevExpress.AspNetCore.Reporting.WebDocumentViewer;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ElektrikDagıtım.Web.Controllers
+namespace ElektrikDagitim.Web.Controllers
 {
     public class ReportController : WebDocumentViewerController
     {

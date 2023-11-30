@@ -1,6 +1,6 @@
-﻿using Dal.Concrete.Sistem;
-using ElektrikDagıtım.Entities.Concrete.Sistem;
-using Entities.Concrete.General;
+﻿using ElektrikDagitim.Dal.Concrete.Sistem;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Sistem;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ElektrikDagıtım.Api_Sistem.Controllers
+namespace ElektrikDagitim.Api_Sistem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -96,11 +96,5 @@ namespace ElektrikDagıtım.Api_Sistem.Controllers
 
             return Json(m);
         }
-
-
-
-
-
-
     }
 }

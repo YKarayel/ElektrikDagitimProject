@@ -1,13 +1,14 @@
-﻿using ElektrikDagıtım.Entities.Concrete.Sistem;
-using ElektrikDagıtım.Entities.ViewModel;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
-using ElektrikDagıtım.Web.Models;
-using Entities.Concrete.General;
+﻿using DevExpress.CodeParser;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Sistem;
+using ElektrikDagitim.Entities.ViewModel;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
+using ElektrikDagitim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
-namespace ElektrikDagıtım.Web.Controllers
+namespace ElektrikDagitim.Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -32,7 +33,7 @@ namespace ElektrikDagıtım.Web.Controllers
 
             }
         }
-       
+
         public IActionResult Index()
         {
             HttpContext.Session.Clear();
@@ -64,21 +65,44 @@ namespace ElektrikDagıtım.Web.Controllers
 
             Mesajlar<AnaSayfaYetki> m = new Mesajlar<AnaSayfaYetki>();
 
-            m.Liste = new List<AnaSayfaYetki>()
+            if (_baseAbone.AdSoyad == "ad")
             {
-                new AnaSayfaYetki() {YetkiAdi= "Faturalar", YetkiDurum = false, modulAd = "Faturalar", modulIcon = "fa fa-calculator", modulUrl = "/Muhasebe/Muhasebe/Faturalar"},
-                new AnaSayfaYetki() {YetkiAdi= "Tahsilatlar", YetkiDurum = false, modulAd = "Tahsilatlar", modulIcon = "fa fa-handshake", modulUrl = "/Muhasebe/Muhasebe/Tahsilatlar"},
-                new AnaSayfaYetki() {YetkiAdi= "Abonelik Sonlandırma", YetkiDurum = false, modulAd = "Abonelik Sonlandırma", modulIcon = "fa-solid fa-square-arrow-up-right", modulUrl = "/Sistem/Sistem/AbonelikSonlandirma"},
 
-            };
+                m.Liste = new List<AnaSayfaYetki>()
+                {
+                    new AnaSayfaYetki() { YetkiAdi = "TumFaturalar", YetkiDurum = true, modulAd = "Tüm Faturalar", modulIcon = "fa-solid fa-file-invoice", modulUrl = "/Muhasebe/Muhasebe/TumFaturalar" },
+                    new AnaSayfaYetki() { YetkiAdi = "TumAboneler", YetkiDurum = true, modulAd = "Tüm Aboneler", modulIcon = "fa-solid fa-users", modulUrl = "/Sistem/Sistem/TumAboneler" },
+                    new AnaSayfaYetki() { YetkiAdi = "TumTahsilatlar", YetkiDurum = true, modulAd = "Tüm Tahsilatlar", modulIcon = "fa-solid fa-file-invoice-dollar", modulUrl = "/Muhasebe/Muhasebe/TumTahsilatlar" },
+                    new AnaSayfaYetki() { YetkiAdi = "AboneSorgula", YetkiDurum = true, modulAd = "Abone Sorgula", modulIcon = "fa-solid fa-plus", modulUrl = "/Sistem/Sistem/AboneSorgula" },
+                    new AnaSayfaYetki() { YetkiAdi = "TahsilEdilmisFaturalar", YetkiDurum = true, modulAd = "Tahsil Edilmiş Faturalar", modulIcon = "fa-solid fa-file-circle-check", modulUrl = "/Muhasebe/Muhasebe/TahsilEdilmisFaturalar" },
+                    new AnaSayfaYetki() { YetkiAdi = "TahsilEdilmemisFaturalar", YetkiDurum = true, modulAd = "Tahsil Edilmemiş Faturalar", modulIcon = "fa-solid fa-file-circle-exclamation", modulUrl = "/Muhasebe/Muhasebe/TahsilEdilmemisFaturalar" },
+                };
+            }
+            else
+            {
+                m.Liste = new List<AnaSayfaYetki>()
+                    {
+                        new AnaSayfaYetki() { YetkiAdi = "Faturalar", YetkiDurum = false, modulAd = "Faturalar", modulIcon = "fa fa-calculator", modulUrl = "/Muhasebe/Muhasebe/Faturalar" },
+                        new AnaSayfaYetki() { YetkiAdi = "Tahsilatlar", YetkiDurum = false, modulAd = "Tahsilatlar", modulIcon = "fa fa-handshake", modulUrl = "/Muhasebe/Muhasebe/Tahsilatlar" },
+                        new AnaSayfaYetki() { YetkiAdi = "AbonelikSonlandırma", YetkiDurum = false, modulAd = "Abonelik Sonlandırma", modulIcon = "fa-solid fa-square-arrow-up-right", modulUrl = "/Sistem/Sistem/AbonelikSonlandirma" },
+                    };
+            }
 
             return View(m);
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

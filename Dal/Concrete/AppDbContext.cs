@@ -1,8 +1,8 @@
-﻿using Dal.Concrete.Sistem;
-using ElektrikDagıtım.Entities.Concrete.General;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.Concrete.Sistem;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
+﻿using ElektrikDagitim.Dal.Concrete.Sistem;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.Concrete.Sistem;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dal.Concrete
+namespace ElektrikDagitim.Dal.Concrete
 {
     public class AppDbContext : DbContext
     {
@@ -20,7 +20,7 @@ namespace Dal.Concrete
         }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -28,7 +28,7 @@ namespace Dal.Concrete
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(connstr);
 
-            
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,10 +39,10 @@ namespace Dal.Concrete
             base.OnModelCreating(modelBuilder);
         }
 
-        
 
 
-        public DbSet<KULLANICI_YETKI> KULLANICI_YETKILERI {  get; set; }
+
+        public DbSet<KULLANICI_YETKI> KULLANICI_YETKILERI { get; set; }
         public DbSet<ABONE> ABONELER { get; set; }
         public DbSet<ABONE_BORC> ABONE_BORCLARI { get; set; }
         public DbSet<TAHSILAT> TAHSILATLAR { get; set; }

@@ -1,0 +1,207 @@
+﻿@model ElektrikDagitim.Entities.Concrete.Sistem.ABONE
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="vh-120 bg-image"
+     style="background-image: url('https://www.aydemperakende.com.tr/storage/blog/elektrik_nasil_uretilir.jpg');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-4">YENİ ABONELİK</h2>
+
+                            <form asp-action="Register" id="formabone">
+
+                                <div class="form-outline mb-3">
+                                    <label asp-for="AdSoyad" class="form-label" for="AdSoyad">Ad Soyad</label>
+                                    <input asp-for="AdSoyad" id="AdSoyad" class="form-control form-control-lg" />
+                                    <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <label asp-for="Eposta" class=" form-label" for="Eposta">Eposta</label>
+                                    <input asp-for="Eposta" id="Eposta" class="form-control form-control-lg" />
+                                    <span asp-validation-for="Eposta" class="text-danger"></span>
+
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <label asp-for="Sifre" class="form-label" for="Sifre">Şifre</label>
+                                    <input asp-for="Sifre" id="Sifre" class="form-control form-control-lg" />
+                                    <span asp-validation-for="Sifre" class="text-danger"></span>
+
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <label asp-for="Sifre" class="form-label" for="sifretekrar">Şifreyi tekrar et</label>
+                                    <input asp-for="Sifre" id="sifretekrar" class="form-control form-control-lg" />
+                                    <span asp-validation-for="Sifre" class="text-danger"></span>
+
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <label asp-for="GsmNo" class="form-label" for="GsmNo">Telefon Numarası</label>
+                                    <input asp-for="GsmNo" id="GsmNo" class="form-control form-control-lg" />
+                                    <span asp-validation-for="GsmNo" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-outline mb-2">
+                                    <label asp-for="TC" class="form-label" for="TC">TC No</label>
+                                    <input asp-for="TC" type="number" id="TC" class="form-control form-control-lg" />
+                                    <span asp-validation-for="TC" class="text-danger"></span>
+
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="kayıtol" onclick="AboneKontrol()">Kayıt Ol</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-2 mb-0">
+                                    Zaten bir hesabın var mı? <a asp-controller="Home" asp-action="index" class="fw-bold text-body"><u>Giriş Yap</u></a>
+                                </p>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Kayıt Süreci</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="alerts">
+                <div class="alert alert-warning" role="alert">
+                    Yeni abonelik sürecinin devam ettirebilmeniz için 500 TL'lik depozito ücretini ödemeniz gerekmektedir.
+                </div>
+                <div class="row">
+                    <div class="col-md-8 mb-4">
+                        <div class="card mb-4">
+
+                            <form>
+
+
+                                <h5 class="mb-4">Payment</h5>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm3"
+                                           checked />
+                                    <label class="form-check-label" for="checkoutForm3">
+                                        Kredi Kartı
+                                    </label>
+                                </div>
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm5" />
+                                    <label class="form-check-label" for="checkoutForm5">
+                                        Paypal
+                                    </label>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input type="text" id="formNameOnCard" class="form-control" />
+                                            <label class="form-label" for="formNameOnCard">Ad Soyad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input type="text" id="formCardNumber" class="form-control" />
+                                            <label class="form-label" for="formCardNumber">Kredi kartı numarası</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-3">
+                                        <div class="form-outline">
+                                            <input type="text" id="formExpiration" class="form-control" />
+                                            <label class="form-label" for="formExpiration">Son kullanma tarihi</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-outline">
+                                            <input type="text" id="formCVV" class="form-control" />
+                                            <label class="form-label" for="formCVV">CVV</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a id="odemedvm" class="btn btn-primary btn-lg btn-block">
+                                    Ödemeye devam et
+                                </a>
+                            </form>
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0">Faturalar</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush" id="ulfatura">
+                                    <li id="liftr" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        Depozito Bedeli: 
+                                        <span>500₺</span>
+                                    </li>
+                                    <hr>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        <div>
+                                            <p class="mb-0"><strong>TOPLAM (KDV DAHİL)</strong></p>
+                                        </div>
+                                        <span id="toplam"><strong>500₺</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  Kayıt Modalı -->
+<div class="modal fade" id="kayıtbasarili" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body alert alert-success" role="alert">
+                Abonelik kaydınız başarıyla oluşturuldu. Giriş yapabilirsiniz
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="/home/index" type="button" class="btn btn-primary">Giriş</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/home/register.js"></script>

@@ -1,8 +1,8 @@
-﻿using Entities.Abstract;
+﻿using ElektrikDagitim.Entities.Abstract;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ElektrikDagıtım.Entities.Concrete.Sistem
+namespace ElektrikDagitim.Entities.Concrete.Sistem
 {
     public class ABONE : BaseEntity
     {
@@ -34,7 +34,7 @@ namespace ElektrikDagıtım.Entities.Concrete.Sistem
         [Required(ErrorMessage = "Doldurulması zorunlu alandır!")]
         public string TC { get; set; }
         [Required]
-        public int YetkiId { get; set; }
+        public int YetkiId { get; set; } = 3;
 
 
     }

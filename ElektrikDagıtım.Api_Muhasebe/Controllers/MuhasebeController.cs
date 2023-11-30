@@ -1,14 +1,13 @@
-﻿using ElektrikDagıtım.Dal.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
+﻿using ElektrikDagitim.Dal.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ElektrikDagıtım.Api_Muhasebe.Controllers
+namespace ElektrikDagitim.Api_Muhasebe.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class MuhasebeController : Controller
     {
 
@@ -24,7 +23,7 @@ namespace ElektrikDagıtım.Api_Muhasebe.Controllers
         [HttpGet("Tum_Faturalari_Getir")]
         public IActionResult Tum_Faturalari_Getir()
         {
-           var m = _fIslemler.Tum_Faturalari_Getir();
+            var m = _fIslemler.Tum_Faturalari_Getir();
             return Json(m);
 
         }
@@ -77,20 +76,20 @@ namespace ElektrikDagıtım.Api_Muhasebe.Controllers
             return Json(m);
         }
 
-        [HttpPost("Fatura_Guncelle")]
+        [HttpPut("Fatura_Guncelle")]
         public IActionResult Fatura_Guncelle([FromBody] FATURA fatura)
         {
             var m = _fIslemler.Fatura_Guncelle(fatura);
             return Json(m);
         }
-        [AllowAnonymous]
+
         [HttpGet("Abone_V_Fatura_Listele")]
         public IActionResult Abone_V_Fatura_Listele([FromHeader] int aboneId)
         {
             var m = _fIslemler.Abone_V_Fatura_Listele(aboneId);
             return Json(m);
         }
-        [AllowAnonymous]
+
         [HttpGet("V_Fatura_Getir")]
         public IActionResult V_Fatura_Getir(int faturaId)
         {
@@ -98,11 +97,30 @@ namespace ElektrikDagıtım.Api_Muhasebe.Controllers
             return Json(m);
         }
 
-        [AllowAnonymous]
+        [HttpGet("Tum_V_Fatura_Getir")]
+        public IActionResult Tum_V_Fatura_Listele()
+        {
+            var m = _fIslemler.Tum_V_Fatura_Listele();
+            return Json(m);
+        }
+
+
         [HttpGet("V_Tahsilat_Listele")]
         public IActionResult V_Tahsilat_Listele(int tahsilatID)
         {
             var m = _tIslemler.V_Tahsilat_Listele(tahsilatID);
+            return Json(m);
+        }
+        [HttpPost("Fatura_Sil")]
+        public IActionResult Fatura_Sil([FromHeader]int faturaId)
+        {
+            var m = _fIslemler.Fatura_Sil(faturaId);
+            return Json(m);
+        }
+        [HttpGet("Fatura_KDV_Oncesi_Guncelle")]
+        public IActionResult Fatura_KDV_Oncesi_Guncelle()
+        {
+            var m = _fIslemler.Fatura_KDV_Oncesi_Guncelle();
             return Json(m);
         }
     }

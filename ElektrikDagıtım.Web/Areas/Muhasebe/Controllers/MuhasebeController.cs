@@ -1,13 +1,13 @@
-﻿using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.Concrete.Sistem;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
-using ElektrikDagıtım.Web.Controllers;
-using Entities.Concrete.General;
+﻿using ElektrikDagitim.Entities.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.Concrete.Sistem;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
+using ElektrikDagitim.Web.Controllers;
+using ElektrikDagitim.Entities.Concrete.General;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
-namespace ElektrikDagıtım.Web.Areas.Muhasebe.Controllers
+namespace ElektrikDagitim.Web.Areas.Muhasebe.Controllers
 {
 
     [Area("Muhasebe")]
@@ -21,7 +21,7 @@ namespace ElektrikDagıtım.Web.Areas.Muhasebe.Controllers
 
         public IActionResult Faturalar()
         {
-           ViewData["user"] = _baseAbone.AdSoyad;
+            ViewData["user"] = _baseAbone.AdSoyad;
             ViewData["userId"] = _baseAbone.ObjectId;
             ViewData["token"] = _baseToken;
             return View();
@@ -34,35 +34,62 @@ namespace ElektrikDagıtım.Web.Areas.Muhasebe.Controllers
             ViewData["token"] = _baseToken;
             return View();
         }
+        
+        public IActionResult TumFaturalar()
+        {
+            ViewData["user"] = _baseAbone.AdSoyad;
+            ViewData["userId"] = _baseAbone.ObjectId;
+            ViewData["token"] = _baseToken;
 
-        //    [HttpGet]
-        //    public async Task<IActionResult> Faturalari_Getir()
-        //    {
-        //        using (HttpClient client = new HttpClient())
-        //        {
-        //            try
-        //            {
-        //                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _baseToken);
-        //                client.DefaultRequestHeaders.Add("aboneId", _baseAbone.ObjectId.ToString());
-        //                HttpResponseMessage response = await client.GetAsync("http://localhost:40000/api/Muhasebe/Abone_Tum_Faturalari_Getir");
+            if (_baseAbone.AdSoyad != "ad")
+                return RedirectToAction("home", "index");
 
-        //                if (response.IsSuccessStatusCode)
-        //                {
-        //                    var content = await response.Content.ReadAsStringAsync();
-        //                    Mesajlar<FATURA> mFatura = JsonConvert.DeserializeObject<Mesajlar<FATURA>>(content);
-        //                    List<FATURA> fatura = mFatura.Liste;
-        //                }
-        //                else
-        //                    Console.WriteLine($"HTTP Error: {response.StatusCode} - {response.ReasonPhrase}");
+            return View();
+        }
+        public IActionResult TumTahsilatlar()
+        {
+            ViewData["user"] = _baseAbone.AdSoyad;
+            ViewData["userId"] = _baseAbone.ObjectId;
+            ViewData["token"] = _baseToken;
 
+            if (_baseAbone.AdSoyad != "ad")
+                return RedirectToAction("home", "index");
 
-        //            }
-        //            catch (HttpRequestException e)
-        //            {
-        //                Console.WriteLine($"Hata: {e.Message}");
-        //            }
-        //        }
-        //        return 
+            return View();
+        }
+        public IActionResult FaturaEkle()
+        {
+            ViewData["user"] = _baseAbone.AdSoyad;
+            ViewData["userId"] = _baseAbone.ObjectId;
+            ViewData["token"] = _baseToken;
+
+            if (_baseAbone.AdSoyad != "ad")
+                return RedirectToAction("home", "index");
+
+            return View();
+        }
+        public IActionResult TahsilEdilmisFaturalar()
+        {
+            ViewData["user"] = _baseAbone.AdSoyad;
+            ViewData["userId"] = _baseAbone.ObjectId;
+            ViewData["token"] = _baseToken;
+
+            if (_baseAbone.AdSoyad != "ad")
+                return RedirectToAction("home", "index");
+
+            return View();
+        }
+        public IActionResult TahsilEdilmemisFaturalar()
+        {
+
+            ViewData["user"] = _baseAbone.AdSoyad;
+            ViewData["userId"] = _baseAbone.ObjectId;
+            ViewData["token"] = _baseToken;
+
+            if (_baseAbone.AdSoyad != "ad")
+                return RedirectToAction("home", "index");
+
+            return View();
+        }
     }
-
 }

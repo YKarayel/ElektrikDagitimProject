@@ -1,8 +1,8 @@
 using System;
 using DevExpress.XtraCharts;
 using DevExpress.XtraReports.UI;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
-using Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
 
 namespace ElektrikDagıtım.Web.Reports
 {
@@ -15,7 +15,7 @@ namespace ElektrikDagıtım.Web.Reports
         }
         public async void Doldur(Mesajlar<V_TAHSILAT> rapor)
         {
-            List<double> tahsilatListesi = new();
+            List<decimal> tahsilatListesi = new();
             date.Text = DateTime.Now.ToShortDateString();
 
 
@@ -84,6 +84,7 @@ namespace ElektrikDagıtım.Web.Reports
                     throw;
                 }
             }
+
             label8.Text = tahsilatListesi.Sum().ToString() + "₺";
             label9.Text = tahsilatListesi.Sum().ToString() + "₺";
 

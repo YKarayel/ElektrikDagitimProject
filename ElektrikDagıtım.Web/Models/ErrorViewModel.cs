@@ -1,4 +1,4 @@
-namespace ElektrikDagıtım.Web.Models
+namespace ElektrikDagitim.Web.Models
 {
     public class ErrorViewModel
     {

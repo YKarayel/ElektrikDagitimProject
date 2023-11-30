@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\ElektrikDagıtım.Entities.csproj" />
+    <ProjectReference Include="..\Entities\ElektrikDagitim.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

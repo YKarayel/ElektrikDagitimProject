@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Entities", "Entities\ElektrikDagıtım.Entities.csproj", "{5C280818-928B-42A2-89AE-B47B097C0C10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagitim.Entities", "Entities\ElektrikDagitim.Entities.csproj", "{5C280818-928B-42A2-89AE-B47B097C0C10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Dal", "Dal\ElektrikDagıtım.Dal.csproj", "{33FD3852-899A-4291-9488-09954120DF4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagitim.Dal", "Dal\ElektrikDagitim.Dal.csproj", "{33FD3852-899A-4291-9488-09954120DF4A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Api_Sistem", "Elektrik.Api.Sistem\ElektrikDagıtım.Api_Sistem.csproj", "{8813AAB5-6997-4533-A674-83E9A28B85C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagitim.Api_Sistem", "Elektrik.Api.Sistem\ElektrikDagitim.Api_Sistem.csproj", "{8813AAB5-6997-4533-A674-83E9A28B85C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Api_Muhasebe", "ElektrikDagıtım.Api_Muhasebe\ElektrikDagıtım.Api_Muhasebe.csproj", "{D1C5FFBF-094B-45D3-89E9-249836BE5617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagitim.Api_Muhasebe", "ElektrikDagıtım.Api_Muhasebe\ElektrikDagitim.Api_Muhasebe.csproj", "{D1C5FFBF-094B-45D3-89E9-249836BE5617}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Web", "ElektrikDagıtım.Web\ElektrikDagıtım.Web.csproj", "{5D2E2753-C890-44D9-95E0-49EAABF854EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagitim.Web", "ElektrikDagıtım.Web\ElektrikDagitim.Web.csproj", "{5D2E2753-C890-44D9-95E0-49EAABF854EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagıtım.Api_GW", "ElektrikDagıtım.Api_GW\ElektrikDagıtım.Api_GW.csproj", "{02239201-E4FC-4228-9A57-E1E81B8FD0FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektrikDagitim.Api_GW", "ElektrikDagıtım.Api_GW\ElektrikDagitim.Api_GW.csproj", "{02239201-E4FC-4228-9A57-E1E81B8FD0FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

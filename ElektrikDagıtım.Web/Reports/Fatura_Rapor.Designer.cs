@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ElektrikDagıtım.Web.Reports {
+namespace ElektrikDagitim.Web.Reports {
     
     public partial class Fatura_Rapor : DevExpress.XtraReports.UI.XtraReport {
         private void InitializeComponent() {

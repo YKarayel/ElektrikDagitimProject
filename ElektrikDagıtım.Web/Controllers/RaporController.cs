@@ -1,11 +1,11 @@
 ﻿using DevExpress.XtraRichEdit.Import.Html;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using ElektrikDagıtım.Entities.ViewModel.Muhasebe;
-using Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
+using ElektrikDagitim.Entities.ViewModel.Muhasebe;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace ElektrikDagıtım.Web.Controllers
+namespace ElektrikDagitim.Web.Controllers
 {
     public class RaporController : BaseController
     {

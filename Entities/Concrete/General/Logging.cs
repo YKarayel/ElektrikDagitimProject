@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using ElektrikDagitim.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElektrikDagıtım.Entities.Concrete.General
+namespace ElektrikDagitim.Entities.Concrete.General
 {
     public class LOGGING : BaseEntity
     {

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dal.Concrete.Sistem
+namespace ElektrikDagitim.Dal.Concrete.Sistem
 {
     public static class Sifreleme_Islemleri
     {
@@ -13,9 +13,9 @@ namespace Dal.Concrete.Sistem
         {
 
             MD5 m = MD5.Create();
-            byte[] data = System.Text.Encoding.Unicode.GetBytes(veri);
+            byte[] data = Encoding.Unicode.GetBytes(veri);
             byte[] encData = m.ComputeHash(data);
-            return System.Text.Encoding.Unicode.GetString(encData);
+            return Encoding.Unicode.GetString(encData);
         }
     }
 

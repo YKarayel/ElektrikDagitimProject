@@ -1,6 +1,6 @@
-﻿using Dal.Abstract;
-using ElektrikDagıtım.Entities.Concrete.Muhasebe;
-using Entities.Concrete.General;
+﻿using ElektrikDagitim.Dal.Abstract;
+using ElektrikDagitim.Entities.Concrete.General;
+using ElektrikDagitim.Entities.Concrete.Muhasebe;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -12,7 +12,7 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dal.Concrete
+namespace ElektrikDagitim.Dal.Concrete
 {
     public class EfEntityRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class
     {
@@ -28,8 +28,8 @@ namespace Dal.Concrete
             Mesajlar<TEntity> m = new Mesajlar<TEntity>();
             try
             {
-                cnt.Entry<TEntity>(ent).State = EntityState.Modified;
-                cnt.Update<TEntity>(ent);
+                cnt.Entry(ent).State = EntityState.Modified;
+                cnt.Update(ent);
 
                 cnt.SaveChanges();
 
@@ -157,7 +157,7 @@ namespace Dal.Concrete
 
             try
             {
-                m.Nesne =  await cnt.Set<TEntity>().FirstOrDefaultAsync(filtre);
+                m.Nesne = await cnt.Set<TEntity>().FirstOrDefaultAsync(filtre);
                 m.Durum = true;
                 m.Mesaj = "Kayıt görüntülendi";
             }
@@ -231,9 +231,9 @@ namespace Dal.Concrete
 
             try
             {
-                PropertyInfo durum = ent.GetType().GetProperty("Durum");
-                if (durum != null)
-                    durum.SetValue(ent, false);
+                PropertyInfo aktif = ent.GetType().GetProperty("Aktif");
+                if (aktif != null)
+                    aktif.SetValue(ent, false);
 
                 var addEntity = cnt.Entry(ent);
                 addEntity.State = EntityState.Modified;

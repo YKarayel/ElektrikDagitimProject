@@ -5,23 +5,25 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Abstract;
+using ElektrikDagitim.Entities.Abstract;
 
-namespace ElektrikDagıtım.Entities.Concrete.Muhasebe
+namespace ElektrikDagitim.Entities.Concrete.Muhasebe
 {
     public class TAHSILAT : BaseEntity
     {
         [Required]
         public int AboneId { get; set; }
-        public double KdvOncesiTutar { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal KdvOncesiTutar { get; set; }
 
         [Display(Name = "Kdv Oranı")]
-        [Required(ErrorMessage = "Doldurulması zorunludur!")]
-        public double KdvOranı { get; set; } = 0.20;
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal KdvOranı { get; set; } = 0.20m;
 
         [Required]
         public string Acıklama { get; set; }
         [Required]
-        public double TahsilatTutari { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TahsilatTutari { get; set; }
     }
 }
