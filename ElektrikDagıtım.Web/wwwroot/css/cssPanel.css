@@ -116,8 +116,8 @@ input.txtIcon
 }
 
     .dvModulButton:hover {
-        background-color: #1a71a3;
-        color:#fff;
+        background-color: #fcba03;
+        color: #fff;
     }
 
     .dvModulButton > i, .dvModulButton span {

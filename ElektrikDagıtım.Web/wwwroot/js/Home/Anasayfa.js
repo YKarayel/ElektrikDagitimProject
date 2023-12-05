@@ -46,7 +46,7 @@ function Modul_Doldur(data) {
             " <div class=\"media-body text-right pt-1\"> " +
             "<h5>" + data[i].modulAd + "</h5> " +
             " <span></span> </div> </div> </div> </div> </div> </div>";
-
+            
 
         $(id).append(elm);
 
@@ -55,5 +55,4 @@ function Modul_Doldur(data) {
         if (ind == 3) ind = 0;
 
     }
-
 };

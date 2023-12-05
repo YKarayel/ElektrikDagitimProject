@@ -144,9 +144,6 @@
 .dx-theme-material-typography small {
   font-size: 12px;
 }
-.dx-theme-material-typography a {
-  color: #ff5722;
-}
 .dx-icon-add,
 .dx-icon-addcolumnleft,
 .dx-icon-addcolumnright,
@@ -15192,7 +15189,7 @@
   margin-right: 10px;
 }
 .dx-rtl .dx-datagrid-search-panel {
-  margin: 0 15px 0 0;
+    margin: 0 15px 0 0;
 }
 .dx-datagrid-filter-panel,
 .dx-datagrid-filter-panel-left {

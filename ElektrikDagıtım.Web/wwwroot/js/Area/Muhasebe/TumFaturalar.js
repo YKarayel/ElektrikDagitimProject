@@ -40,10 +40,11 @@ function setDxDataGrid(response) {
         allowColumnResizing: true,
         columnAutoWidth: true,
         searchPanel: {
+            width: 1230,
             visible: true,
         },
         paging: {
-            pageSize: 14,
+            pageSize: 20,
             enabled: true,
         },
         editing: {
@@ -58,6 +59,7 @@ function setDxDataGrid(response) {
         columns: [
 
             {
+
                 dataField: 'ObjectId',
                 alignment: 'center',
                 caption: "Fatura No",
