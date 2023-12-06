@@ -7,7 +7,7 @@
 <li>Devexpress (DataGrid, Raports)</li>
 <hr>
 <h4>Projenin İşleyişi</h4>
-<p>Elektrik Dağıtım Firmasına ait kullanıcı faturalarının görüntülenmesi, ödenmesi, tahsilat makbuzlarının görüntülenmesi ve çıktılarının alınabilmesine olanak sağlayan. Ayrıca yeni abonelik süreçlerinde depozito ücretlerinin alınması ve abonelik sonlandırılması esnasında depozito bedelinin geri iade edilmesi gibi süreçleri yöneten projedir.</p>
+<p> Elektrik Dağıtım Firmasına ait kullanıcı faturalarının görüntülenmesi, ödenmesi, tahsilat makbuzlarının görüntülenmesi ve çıktılarının alınabilmesine olanak sağlayan. Ayrıca yeni abonelik süreçlerinde depozito ücretlerinin alınması ve abonelik sonlandırılması esnasında depozito bedelinin geri iade edilmesi gibi süreçleri yöneten projedir.</p>
 <hr>
 <h4>Altyapı</h4>
 <li>Microservice mimarisiyle geliştirilmiştir.</li>
