@@ -1,8 +1,8 @@
 # ElektrikDagitimProject
 
-<li>Kullanılan teknolojiler
-<ul>ASPNet Core 6.0</ul>
-<ul>Jquery</ul>
-<ul>FontAwesome</ul>
-<ul>Devexpress (DataGrid, Raports)</ul>
-</li>
+<ul>Kullanılan teknolojiler
+<li>ASPNet Core 6.0</li>
+<li>Jquery</li>
+<li>FontAwesome</li>
+<li>Devexpress (DataGrid, Raports)</li>
+</ul>
