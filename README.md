@@ -15,7 +15,7 @@
 <h4>Altyapı</h4>
 <li>Microservice mimarisiyle geliştirilmiştir.</li>
 <li>Gateway ve JWT Token kullanılmıştır.</li>
-<li>Html ile birlikte ham javascript kullanılmış gerekli api requestleri bu tarafta yapılmıştır.</li>
+<li>Html ile birlikte ham javascript kullanılmış gerekli api requestleri yapılmıştır.</li>
 <hr>
 <img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/edca786d-5410-438e-a544-afdb430c78a1"/>
 <img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/0cf88de2-6a0d-46f5-8b0a-027760943c5d"/>
