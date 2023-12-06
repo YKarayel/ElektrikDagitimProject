@@ -16,3 +16,4 @@
 <li>Microservice mimarisiyle geliştirilmiştir.</li>
 <li>Gateway ve JWT Token kullanılmıştır.</li>
 <li>Html ile birlikte ham javascript kullanılmış gerekli api requestleri bu tarafta yapılmıştır.</li>
+<hr>
