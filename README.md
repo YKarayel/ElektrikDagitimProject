@@ -17,4 +17,3 @@
 <li>Gateway ve JWT Token kullanılmıştır.</li>
 <li>Html ile birlikte ham javascript kullanılmış gerekli api requestleri bu tarafta yapılmıştır.</li>
 <hr>
-![image](https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/84c01210-ae7f-4a10-82a5-09260614c52b)
