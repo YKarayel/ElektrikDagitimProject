@@ -18,7 +18,6 @@
 <li>Html ile birlikte ham javascript kullanılmış gerekli api requestleri yapılmıştır.</li>
 <hr>
 <img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/edca786d-5410-438e-a544-afdb430c78a1"/>
-<img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/0cf88de2-6a0d-46f5-8b0a-027760943c5d"/>
 <img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/65a0dde6-5079-49fa-92e4-fad07a354e84"/>
 <img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/f25e3545-f686-424b-8872-4ec011eec34d"/>
 <img src="https://github.com/YKarayel/ElektrikDagitimProject/assets/121500914/811572bc-b0dd-4084-8be9-d9bb273fd3a9"/>
