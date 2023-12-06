@@ -1,5 +1,5 @@
 # ElektrikDagitimProject
-
+<hr>
 <h4>Kullanılan Teknolojiler :</h4>
 <li>ASPNet Core 6.0</li>
 <li>Jquery</li>
